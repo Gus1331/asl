@@ -3,31 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--o link abaixo (w3schools) é o CSS, sinta-se livre para adiocionar mais se quiser :D -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Calculadora Financeira</title>
 </head>
 <body>
     <div class="w3-container w3-dark-grey w3-center" >
-        <h3>Calculadora Financeira</h3>
-        <h4 class="w3-grey w3-padding-small">
-            Feita pelo Grupo 10
-        </h4>
+        <h3>Calculadora Financeira
+            <br> <u>Feita pelo grupo 10</u>
+            <hr>
+        </h3>
     </div>
     
+    <!--Linha 1-->
     <div class="w3-row w3-padding-32">
         <div class="w3-container w3-half">
             <form class="w3-container">
-                <label>Quanto que gasta com seus funcionários por mês?</label>
-                <input class="w3-input" type="text" id="input_salario_funcionario">
+                <label>Qual que é so salário dos seus funcionários?</label>
+                <input class="w3-input" type="number" id="input_salario_funcionario">
             </form>
         </div>
         <div class="w3-container w3-half">
             <form class="w3-container">
-                <label>Quanto que custa a mercadoria?</label>
-                <input class="w3-input" type="text" id="input_preco_produto">
+                <label>Quantos sensores quer instalar?</label>
+                <input class="w3-input" type="number" id="input_numero_sensor">
             </form>
         </div>
     </div>
+    
+    <!--Linha 2-->
+    <div class="w3-row w3-padding-32">
+        <div class="w3-container w3-half">
+            <form class="w3-container">
+                <label>Número de funcionários</label>
+                <input class="w3-input" type="number" id="input_numero_funcionario">
+            </form>
+        </div>
+        <div class="w3-container w3-half">
+
+            <form class="w3-container">
+                <label>Total de perda de mercadoria (em reais)</label>
+                <input class="w3-input" type="number" id="input_perda">
+            </form>
+        </div>
+    </div>
+    
+    <div class="w3-center">
+        <button class="w3-button w3-grey w3-padding-large" style="width: 46%;" onclick="calcularFinanciamento()">
+            Calcular
+        </button>
+    </div>
+
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+
 </body>
+<script>
+    function calcularFinanciamento() {
+        var salarioFuncionario = Number(input_salario_funcionario.value)
+        var numeroFuncionarios = Number(input_numero_funcionario.value)
+        var numeroSensores = Number(input_numero_sensor.value)
+        var perdaProduto = Number(input_perda.value)
+
+        var custoSensor = 4000
+
+        var custoFuncionarios = salarioFuncionario * numeroFuncionarios
+        var perdasTotais = perdaProduto + custoFuncionarios
+        var custoTotalSensores = custoSensor * numeroSensores 
+        var totalEconomizado = perdasTotais / 3
+
+
+        div1.innerHTML = `
+        Atualmente você perde R$${perdasTotais}, com nosso produto você passa a perder R$${totalEconomizado} apenas pelo preço de R$${custoTotalSensores}.
+        `
+    }
+</script>
+
+
 </html>
