@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <script defer>
+        function simularContrato(){
+            var instalacao = 200;
+            var manutencao = 75;
+
+            var gastos;//Gastos com funcionários/mês /tempo de contrato
+            var economizado; // dinheiro economizado
+            var custos;//  Custos do nosso serviço no tempo estimado
+
+            var numeroFuncionarios = Number(numFuncionarios.value);
+            var salarioFuncionarios = Number(salFuncionarios.value);
+            var qtdEsteiras = Number(quantidadeEsteiras.value);
+            var tempoContrato = Number(tempoEstimadoContrato.value);
+
+            gastos = (numeroFuncionarios * salarioFuncionarios) * tempoContrato;
+            custos = (qtdEsteiras * instalacao) + (manutencao * tempoContrato);
+            economizadoMes = (numeroFuncionarios * salarioFuncionarios) - ((qtdEsteiras * instalacao) + manutencao);
+            economizado = gastos - custos;
+
+            if(economizado > 0){
+                screendiv.innerHTML = `<p>Em ${tempoContrato} meses, sua empresa irá gastar por volta de: <span class= 'red destaque'>R$${gastos}.00</span> com funcionarios monitorando e fazendo controle de ${qtdEsteiras} esteiras (<span class="red destaque">R$${(numeroFuncionarios * salarioFuncionarios)}/mês</span>). </p>
+                <p>Enquanto com a nossa solução, sua empresa gastará apenas <span class= 'green destaque'>R$${custos}.00</span>, economizando em média <span class= 'green destaque'>R$${economizadoMes}.00</span>.</p>`;
+            }
+            else{
+                screendiv.innerHTML = `<p class="destaque">Sua empresa não renderá com nossa solução!</p>`;
+            }
+
+        }
+    </script>
+    <style>
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            box-sizing: border-box;
+        }
+        h1{
+            text-align: center;
+        }
+
+        body{
+            background-color: rgb(253, 233, 207);
+        }
+        main{
+            width: 490px;
+            height: 510px;
+            margin: 0 auto 0;
+            padding: 20px;
+            background-color: rgb(255, 250, 253);
+            border-radius: 3px;
+        }
+        .campoInput{
+            height: 3.5em;
+            margin-bottom: 15px;
+        }
+        input{
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            padding: 6px;
+        }
+        .botaoPrincipal{
+            width: 100%;
+            height: 2.2em;
+            font-size: 1em;
+            margin-bottom: 5px;
+            background-color: purple;
+            color: white;
+        }
+        .botaoPrincipal:active{
+            background-color: rgb(57, 5, 82);
+            color: rgb(133, 133, 133);
+        }
+        .destaque{
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+        .green{
+            color: green;
+        }
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Financeira</h1>
+    <hr>
+    <main>
+        <div class="campoInput">Numero de Funcionários:
+            <input type="number" min="0" id="numFuncionarios">
+        </div>
+        <div class="campoInput">Média salarial por funcionário em R$:
+            <input type="text" id="salFuncionarios">
+        </div>
+        <div class="campoInput">Quantidade de esteiras para instalação do sensor: 
+            <input type="number" min="0" id="quantidadeEsteiras">
+        </div>
+        <div class="campoInput">Tempo estimado de contrato em meses:
+            <input type="number" min="0" id="tempoEstimadoContrato">
+        </div>
+        <button class="botaoPrincipal" onclick="simularContrato();">Simule agora!</button>
+        <hr>
+        <div id="screendiv"></div>
+    </main>
+</body>
+</html>
