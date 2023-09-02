@@ -1,0 +1,83 @@
+
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+}
+h1{
+       
+    text-align: center;
+}
+
+body{
+    background-image:url("https://img.freepik.com/vetores-premium/linha-de-producao-no-interior-da-fabrica-banner-no-design-plano-dos-desenhos-animados-linha-de-montagem-automatica-de-esteira-transportadora-com-caixas-de-papelao-e-mao-robotica-inovacao-industrial-ilustracao-em-vetor-de-fundo-da-web_198565-1049.jpg?w=2000");
+    background-size: cover;
+    
+}
+main{
+    width: 490px;
+    height: 510px;
+    margin: 0 auto 0;
+    padding: 20px;
+    background-color: rgb(255, 250, 253);
+    border-radius: 30px 30px 30px 30px;
+    border: rgb(20, 22, 54) 1.5px inset;
+}
+.campoInput{
+    font-family: monospace ;
+    font-size: 1.2em;
+    height: 3.5em;
+    margin-bottom: 15px;
+}
+input{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding: 6px;
+}
+.botaoPrincipal{
+    width: 100%;
+    height: 2.2em;
+    font-size: 1em;
+    margin-bottom: 5px;
+    background-color: purple;
+    color: white;
+}
+.botaoPrincipal:active{
+    background-color: rgb(57, 5, 82);
+    color: rgb(133, 133, 133);
+}
+.destaque{
+    font-weight: bold;
+    font-size: 1.05em;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
+.container-barra{
+   color:black;
+   width:20vw;
+}
+p:hover{
+    color:black;
+
+}
+.image_info{
+    width: 5%;
+    height: 5%;
+    cursor: pointer;
+}
+
+.box_s{
+    background-color: aliceblue;
+    width: 30%;
+    position: absolute;
+    color:black;
+    border-radius: 5%;
+    padding: 20px;
+    display: none;
+    border:black 1.5px inset;
+    
+}
