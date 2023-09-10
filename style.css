@@ -9,22 +9,25 @@ h1{
 }
 
 body{
-    background-image:url("https://img.freepik.com/vetores-premium/linha-de-producao-no-interior-da-fabrica-banner-no-design-plano-dos-desenhos-animados-linha-de-montagem-automatica-de-esteira-transportadora-com-caixas-de-papelao-e-mao-robotica-inovacao-industrial-ilustracao-em-vetor-de-fundo-da-web_198565-1049.jpg?w=2000");
+    background-image: url(content/background.png);
     background-size: cover;
+    background-position: right;
     
 }
 main{
-    width: 490px;
-    height: 510px;
-    margin: 0 auto 0;
+    width: 555px;
+    height: 526px;
+    margin: -5px auto 0;
     padding: 20px;
-    background-color: rgb(255, 250, 253);
+    background-color: #ffffff;
     border-radius: 30px 30px 30px 30px;
     border: rgb(20, 22, 54) 1.5px inset;
+    box-shadow: 2px 2px 3px rgba(14, 1, 11, 0.445);
+    position: static;
 }
 .campoInput{
     font-family: monospace ;
-    font-size: 1.2em;
+    font-size: 1.3em;
     height: 3.5em;
     margin-bottom: 15px;
 }
@@ -34,50 +37,58 @@ input{
     margin-top: 5px;
     padding: 6px;
 }
+.botaoPrincipal:hover{
+    cursor: pointer;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.473);
+    background-color: #ee663d;
+}
 .botaoPrincipal{
     width: 100%;
     height: 2.2em;
     font-size: 1em;
     margin-bottom: 5px;
-    background-color: purple;
+    background-color: #E7452F;
     color: white;
+    border-radius: 3px;
 }
 .botaoPrincipal:active{
-    background-color: rgb(57, 5, 82);
-    color: rgb(133, 133, 133);
+    background-color: #d12424;
+    color: rgb(199, 199, 199);
 }
 .destaque{
     font-weight: bold;
     font-size: 1.05em;
 }
 .green{
-    color: green;
+    color: rgb(14, 139, 14);
 }
 .red{
-    color: red;
+    color: rgb(194, 17, 17);
 }
+
 .container-barra{
    color:black;
    width:20vw;
 }
-p:hover{
-    color:black;
-
-}
 .image_info{
-    width: 5%;
-    height: 5%;
+    height: 1.25em;
     cursor: pointer;
+    display: inline-block;
+    margin-right: auto;
 }
 
 .box_s{
-    background-color: aliceblue;
-    width: 30%;
-    position: absolute;
-    color:black;
-    border-radius: 5%;
-    padding: 20px;
     display: none;
-    border:black 1.5px inset;
-    
+    background-color: rgb(178, 198, 236);
+    width: 380px;
+    bottom: 20px;
+    right: 13px;
+    position: absolute;
+    color:rgb(16, 15, 56);
+    border-radius: 15px;
+    padding: 20px;
+    border:rgba(0, 0, 0, 0.658) 1.5px inset;
+}
+.pInfo{
+    line-height: 1.5em;
 }
