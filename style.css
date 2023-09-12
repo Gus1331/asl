@@ -11,7 +11,9 @@ h1{
 body{
     background-image: url(content/background.png);
     background-size: cover;
-    background-position: right;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-color: rgb(31, 12, 37);
     
 }
 main{
