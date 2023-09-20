@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="content/logo.ico" type="image/x-icon">
+    <script defer>
+        function simularContrato() {
+            var instalacao = 400;
+            var manutencao = 75;
+
+            var gastos;//Gastos com funcionários/mês /tempo de contrato
+            var economizado; // dinheiro economizado
+            var custos;//  Custos do nosso serviço no tempo estimado
+
+            var numeroFuncionarios = Number(numFuncionarios.value);
+            var salarioFuncionarios = Number(salFuncionarios.value);
+            var qtdEsteiras = Number(quantidadeEsteiras.value);
+            var tempoContrato = Number(tempoEstimadoContrato.value);
+
+            gastos = (numeroFuncionarios * salarioFuncionarios) * tempoContrato;
+            custos = (qtdEsteiras * instalacao) + (manutencao * tempoContrato);
+            economizadoMes = (numeroFuncionarios * salarioFuncionarios) - ((qtdEsteiras * instalacao) + manutencao);
+            economizado = gastos - custos;
+
+            if (economizado > 0) {
+                screendiv.innerHTML = `
+                <p>Em ${tempoContrato} meses, sua empresa irá gastar por volta de: 
+                    <span class= 'red destaque'>R$${gastos}.00</span>
+                     com funcionarios monitorando e fazendo controle de ${qtdEsteiras} esteiras (<span class="red destaque">R$${(numeroFuncionarios * salarioFuncionarios)}/mês</span>).
+                </p>
+
+                <p>Enquanto com a nossa solução, sua empresa gastará apenas <span class= 'green destaque'>R$${custos}.00</span>, economizando em média <span class= 'green destaque'>R$${economizado}.00</span>.
+                <img src="content/infobtn.png" onclick="abrir_box()" class="image_info">
+                </p>
+                `;
+            }
+            else {
+                screendiv.innerHTML = `<p class="destaque">Sua empresa não renderá com nossa solução!</p>`;
+            }
+
+        }
+
+        function abrir_box() {
+            info.style.display = 'flex';
+        }
+
+        function fechar_box() {
+            info.style.display = 'none';
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h1>Calculadora Financeira</h1>
+    </div>
+    <main>
+        <div class="campoInput">Numero de Funcionários:
+            <input type="number" min="0" id="numFuncionarios">
+        </div>
+        <div class="campoInput">Média salarial por funcionário em R$:
+            <input type="text" id="salFuncionarios">
+        </div>
+        <div class="campoInput">Quantidade de esteiras para instalação do sensor:
+            <input type="number" min="0" id="quantidadeEsteiras">
+        </div>
+        <div class="campoInput">Tempo estimado de contrato em meses:
+            <input type="number" min="0" id="tempoEstimadoContrato">
+        </div>
+        <button class="botaoPrincipal" onclick="simularContrato();">Simule agora!</button>
+        <hr>
+        <div id="screendiv"></div>
+        <div id="container-barra">
+            <div id="info" class="box_s" onclick="fechar_box()">
+                <span class="pInfo">
+                    Valor da instalação: R$400 <br> (a instalação inclui 2 sensores + 2 kits Arduínos + serviços).
+                    <br><br>
+                    Valor da manutenção mensal: R$75 <br>
+                </span>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
