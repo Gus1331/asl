@@ -4,8 +4,8 @@ USE asl;
 
 
  -- TABELAS -----------------------------------------------------------
-CREATE TABLE cliente /* 8 colunas */
-	(clientesId INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE usuario /* 8 colunas */
+	(usuarioId INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     fkEmpresa INT,
     email VARCHAR(256) NOT NULL,

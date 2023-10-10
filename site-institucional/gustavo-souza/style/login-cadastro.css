@@ -1,0 +1,124 @@
+/* HEADER & banner */
+header{
+    height: 80px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.432) 80%, rgba(0, 0, 0, 0.00) 95%);
+    align-items: center;
+    padding: 0 10%;
+}
+.logoHeader{
+    width: 100px;
+}
+.banner {
+    background-image: url(../../public/assets/content/banner1.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+    padding: 85px;
+}
+
+
+
+
+/* Login  */
+.containerMain{
+    background-color: #FFF;
+    margin: auto;
+    padding: 30px 40px;
+    border-radius: 4px;
+    flex-direction: column;
+}
+.containerMainLogin{
+    display: flex;
+    width: 380px;
+}
+.containerMain h1{
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+.containerMain h3{
+    font-size: 1.5em;
+    font-weight: normal;
+}
+.containerInput{
+    margin-bottom: 70px;
+}
+.containerMainLogin .containerInput input{
+    display: block;
+    width: 100%;
+    margin: 5px 0 15px 0;
+}
+.containerInput input{
+    background: #CAD3DE;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    }
+.containerMain span{
+    text-decoration: underline;
+    color: #6D869D;
+    word-spacing: 0.1em;
+    cursor: pointer;
+}
+.containerInputBtn{
+    display: flex;
+    justify-content: space-between;
+}
+.btnGradient{
+    background: linear-gradient(to bottom, #E7452F , #AD131D );
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    padding: 9px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.36);
+    cursor: pointer;
+
+}
+
+.containerInputBtn .btnGradient{
+    width: 40%;
+}
+.containerMain > .btnGradient{
+    width: 75%;
+    margin: auto;
+}
+.containerMainGradient{
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.19) 0%, rgba(255, 255, 255, 0.00) 100%);
+    border-radius: 4px;
+    height: 20px;
+    margin: 10px auto;
+}
+.containerMainGradient1{
+    width: 380px;
+}
+
+
+
+
+/* cadastro */
+.containerMainRegister{
+    width: 80%;
+    justify-content: flex-end;
+    display: flex;
+}
+.containerInputRegister{
+    display: flex;
+    justify-content: space-evenly;
+}
+.containerInputRegister .containerInput input{
+    width: 350px;
+    margin-bottom: 10px;
+}
+.containerMainRegister .btnGradient{
+    width: 250px;
+    margin: 0 0 0 auto;
+}
+.containerInputRegister .containerInput{
+    margin-bottom: 20px;
+}
+.containerMainGradient2{
+    width: 80%;
+}
