@@ -4,8 +4,16 @@ USE asl;
 
 
  -- TABELAS -----------------------------------------------------------
+ CREATE TABLE empresa /* 4 colunas */
+	(idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    cnpj CHAR(14),
+	qtdSensores INT NOT NULL,
+    responsavel INT
+);
+
 CREATE TABLE usuario /* 8 colunas */
-	(usuarioId INT PRIMARY KEY AUTO_INCREMENT,
+	(idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     fkEmpresa INT,
     email VARCHAR(256) NOT NULL,
@@ -13,42 +21,43 @@ CREATE TABLE usuario /* 8 colunas */
     cpf CHAR(11) NOT NULL,	
     senha VARCHAR(30) NOT NULL,
     		CONSTRAINT fkEmpresa FOREIGN KEY (fkEmpresa)
-				REFERENCES empresa(empresaId));
-    
-CREATE TABLE empresa /* 4 colunas */
-	(empresaId INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50),
-    cnpj CHAR(14),
-	qtdSensores INT NOT NULL,
-    responsavel VARCHAR(50)
+				REFERENCES empresa(idEmpresa)
 );
  
-CREATE TABLE sensor /* 4 colunas */
-	(sensorId INT PRIMARY KEY AUTO_INCREMENT,
-    empresaId INT NOT NULL,
-    tipo VARCHAR(7) NOT NULL,
-    fkEsteira INT,
-			CONSTRAINT fkEsteira FOREIGN KEY (fkEsteira)
-				REFERENCES esteira(esteiraId));
-    
-CREATE TABLE esteira /* 5 colunas */
-	(esteiraId INT PRIMARY KEY AUTO_INCREMENT,
+ CREATE TABLE esteira /* 5 colunas */
+	(idEsteira INT AUTO_INCREMENT,
     fkEmpresa INT,
+    PRIMARY KEY (idEsteira, fkEmpresa),
     identificacao VARCHAR(10),
 	produto VARCHAR(25),
     condicao VARCHAR(10),
     producaoEstimadaPorMin INT,
 		CONSTRAINT fkEmpresaEsteira FOREIGN KEY (fkEmpresa)
-				REFERENCES empresa(empresaId));
+				REFERENCES empresa(idEmpresa)
+);
+ 
+CREATE TABLE sensor /* 4 colunas */
+	(idSensor INT AUTO_INCREMENT,
+    tipo VARCHAR(7) NOT NULL,
+    fkEsteira INT,
+	PRIMARY KEY (idSensor, fkEsteira),
+			CONSTRAINT fkEsteira FOREIGN KEY (fkEsteira)
+				REFERENCES esteira(idEsteira)
+);
 
 CREATE TABLE registro /* 3 colunas */
-	(registroId INT PRIMARY KEY AUTO_INCREMENT,
+	(idRegistro INT AUTO_INCREMENT,
     fkSensor INT,
+    PRIMARY KEY(idRegistro, fkSensor),
     dataRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
 		CONSTRAINT fkSensor FOREIGN KEY (fkSensor)
-			REFERENCES sensor(sensorId));
+			REFERENCES sensor(idSensor)
+);
     
 -- CONSTRAINTS ------------------------------------------------
+ALTER TABLE empresa 
+	ADD CONSTRAINT fkClienteEmpresa FOREIGN KEY (responsavel)
+			REFERENCES usuario(idUsuario);	
 ALTER TABLE sensor MODIFY COLUMN tipo VARCHAR(7), ADD CONSTRAINT checktipo CHECK (tipo = 'entrada' OR tipo = 'saida');
 ALTER TABLE esteira MODIFY COLUMN condicao VARCHAR(11), ADD CONSTRAINT checkCondicao CHECK (condicao = 'funcionando' OR condicao = 'parado');
 
@@ -75,7 +84,7 @@ INSERT INTO registro (registroId, sensorId) VALUES
     (1298314, 723);
     
 -- SELECTS -----------------------------------------------------
-SELECT * FROM cliente;
+SELECT * FROM usuario;
 
 SELECT * FROM sensor;
 
