@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="geralStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+
+<body>
+    <div class="containerGeral">
+        <main>
+            <div class="sidebar">
+
+                <div class="topSidebar">
+                    <div class="icon">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIGhR9so16LSang39t4pWu9uUS6YgH4xl03U_9ni2CiGF2D7cYRbZrUyEGO71NF_lOork&usqp=CAU">
+                    </div>
+                    <h2>User123</h2>
+                    <div class="userOptions">
+                        <img src="../public/assets/content/useroptions-icon.png">
+                    </div>
+                </div>
+
+                <div class="midSidebar">
+                    <div class="listTitle">
+                        <h1>Dashboards</h1>
+                        <div class="icon">
+                            <img src="../public/assets/content/dashbord-icon.png">
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="li">
+                            Produção
+                            <div class="icon">
+                                <img src="../public/assets/content/producao-icon.png">
+                            </div>
+                        </li>
+                        <div class="listLines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <li>
+                            Renda
+                            <div class="icon">
+                                <img src="../public/assets/content/renda-icon.png">
+                            </div>
+                        </li>
+                        <div class="listLines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="selected">
+                            <li>
+                                Geral
+                                <div class="icon">
+                                    <img src="../public/assets/content/geral-icon.png">
+                                </div>
+                        </div>
+                        </li>
+                        <div class="listLines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <li>
+                            Configurações
+                            <div class="icon">
+                                <img src="../public/assets/content/config-icon.png">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bottomSidebar">
+                    <div class="logo icon">
+                        <img src="../public/assets/content/logo.png">
+                    </div>
+                    <p class="version">Versão 1.00</p>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <!-- Graficos-->
+            <div class="dashboard">
+
+                <div class="chart1">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart2">
+
+                    <div>
+                        <canvas id="myChart Produção"></canvas>
+                    </div>
+        
+    </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="texto">
+                <h3>ESTEIRAS</h3> <br>
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+           <input type="checkbox" name="Est1" id="Est1">ESTEIRA 1
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <input type="checkbox" name="Est2" id="Est2">  ESTEIRA 2
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <input type="checkbox" name="Est4" id="Est4"> ESTEIRA 3
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <input type="checkbox" name="Est4" id="Est4"> ESTEIRA 4
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+                </div>
+                <div class="este">
+                    <img class="esteira" src="https://static.vecteezy.com/ti/vetor-gratis/p3/9965250-ilustracao-contorno-contorno-conveyor-belt-de-step-vetor.jpg">
+                </div>
+
+        </div>
+        </div>
+
+        <div class="card2">
+            <div class="imagem">
+            <img class="garrafa" src="https://static.vecteezy.com/ti/vetor-gratis/p1/4332401-alcool-bebida-vidro-glifo-icones-conjunto-vinho-servico-copos-de-cristal-formas-e-tipos-bebidas-e-bebidas-tipos-garrafas-vinho-tinto-com-rotulos-silhueta-simbolos-ilustracao-isolada-vetor.jpg" ><br>
+        </div>
+
+
+            <div class="texto2">
+                <h3>PRODUTOS</h3> <br>
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+           <input type="checkbox" name="Est1" id="Est1"> GARRAFAS 
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <input type="checkbox" name="Est2" id="Est2">  COPOS
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <input type="checkbox" name="Est4" id="Est4"> JARROS
+            <div class="listLines">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <input type="checkbox" name="Est4" id="Est4"> ESPELHOS
+            <div class="listLines">
+                <div class="line"></div>
+                </div>
+
+        </div>
+
+
+        </div>
+
+
+    </main>
+   
+
+
+
+
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'Lucro Anual',
+                    data: [22000, 25000, 19000, 20000, 17000, 19000, 25000, 29000, 27000, 28000, 25000, 29000],
+                    backgroundColor: "rgb(0, 0, 225)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 5000,
+                        max: 30000,
+                        ticks: {
+                            stepSize: 500
+                        }
+
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+    <script>
+        const ctxProdução = document.getElementById('myChart Produção');
+
+        new Chart(ctxProdução, {
+            type: 'bar',
+            data: {
+                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'Produção',
+                    data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
+                    backgroundColor: "rgb(255, 255, 0)",
+                    borderColor: "rgb(0, 0, 255)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 50000,
+                        max: 300000,
+                        ticks: {
+                            stepSize: 5000
+                        }
+
+                    }
+                }
+            }
+        });
+    </script>
+
+    </div>
+
+
+</body>
+
+</html>
