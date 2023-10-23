@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="geralStyle.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -35,12 +35,14 @@
                         </div>
                     </div>
                     <ul>
-                        <li class="li">
-                            Produção
-                            <div class="icon">
-                                <img src="../public/assets/content/producao-icon.png">
-                            </div>
-                        </li>
+                        <a href="dashbord.html">
+                            <li class="li">
+                                Produção
+                                <div class="icon">
+                                    <img src="../public/assets/content/producao-icon.png">
+                                </div>
+                            </li>
+                        </a>
                         <div class="listLines">
                             <div class="line"></div>
                             <div class="line"></div>
@@ -109,145 +111,112 @@
                     </div>
                 </div>
 
-                <div class="linha">
+                <!-- Filtro tabela -->
+                <nav class="filtro">
+                    <div class="search">
+                        <input type="text">
+                        <button><img src="../public/assets/content/lupa-icon.png"></button>
+                    </div>
+                    <span>Filtrar por:</span>
+                    <select id="select_filtrar_produto">
+                        <option disabled selected>Produto</option>
+                        <option value="Garrafa CB-4">Garrafa CB-4</option>
+                        <option value="Frasco 986">Frasco 986</option>
+                        <option value="Frasco 234">Frasco 234</option>
+                        <option value="Garrafa HJ-4">Garrafa HJ-4</option>
+                        <option value="Copo Especial 3">Copo Especial 3</option>
+                    </select>
+                    <select id="select_filtrar_status">
+                        <option disabled selected>Status</option>
+                        <option value="Funcionando">Funcionando</option>
+                        <option value="Parado">Parado</option>
 
-                </div>
+                    </select>
+                    <span>Ordem:</span>
+                    <select id="select_ordem">
+                        <option value="Crescente">Crescente</option>
+                        <option value="Decrescente">Decrescente</option>
+                    </select>
+                </nav>
+
+
+                <!-- TABELA -->
 
                 <div class="container">
-                    <div class="Esteiras">
-                        <div class="titulo">
-                            <h2>FUNCIONAMENTO</h2> <br>
-                            <br>
-                        </div>
-                        <table class="tabela">
-                            <tr>
-                                <td>
-                                    <div class="E1">
-                                        <h3>Esteira 1</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="imagemEst"><img
-                                            src="C:\Users\Rafael\Downloads\asl\site-institucional\public\assets\content\bola verde.jpg">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="E2">
-                                        <h3>Esteira 2</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="imagemEst"><img
-                                            src="C:\Users\Rafael\Downloads\asl\site-institucional\public\assets\content\bola verde.jpg">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="E3">
-                                        <h3>Esteira 3</h3>
-                                    </div>
-                                </td>
-                            
-                                <td>
-                                    <div class="imagemEst"><img
-                                            src="C:\Users\Rafael\Downloads\asl\site-institucional\public\assets\content\bola vermelha.png">
-                                    </div>
-                                </td>
-                            
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="E4">
-                                        <h3>Esteira 4</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="imagemEst"><img
-                                            src="C:\Users\Rafael\Downloads\asl\site-institucional\public\assets\content\bola verde.jpg">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="E5">
-                                        <h3>Esteira 5</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="imagemEst"><img
-                                            src="C:\Users\Rafael\Downloads\asl\site-institucional\public\assets\content\bola vermelha.png">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="E6">
-                                        <h3>Esteira 6</h3>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="imagemEst"><img
-                                            src="C:\Users\Rafael\Downloads\asl\site-institucional\public\assets\content\bola amarela.png">
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                    <table>
+                        <tr>
+                            <th>Identificação</th>
+                            <th>Produto</th>
+                            <th>Status</th>
+                            <th>Produção Estimada</th>
+                            <th>Produção Real</th>
+                        </tr>
+                        <tr>
+                            <td>Esteira A</td>
+                            <td>Garrafa CB-4</td>
+                            <td>Funcionando</td>
+                            <td class="center">25/min</td>
+                            <td class="center green">26/min</td>
+                        </tr>
+                        <tr>
+                            <td>Esteira B</td>
+                            <td>Frasco 986</td>
+                            <td>Parado</td>
+                            <td class="center">22/min</td>
+                            <td class="center red">0/min</td>
+                        </tr>
+                        <tr>
+                            <td>Esteira C</td>
+                            <td>Frasco 234</td>
+                            <td>Funcionando</td>
+                            <td class="center">25/min</td>
+                            <td class="center red">16/min</td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>Esteira D</td>
+                            <td>Garrafa HJ-4</td>
+                            <td>Funcionando</td>
+                            <td class="center">26/min</td>
+                            <td class="center green">24/min</td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>Esteira E</td>
+                            <td>Garrafa CB-8</td>
+                            <td>Parado</td>
+                            <td class="center">25/min</td>
+                            <td class="center red">0/min</td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td>Esteira F</td>
+                            <td>Copo Especial 3</td>
+                            <td>Funcionando</td>
+                            <td class="center">25/min</td>
+                            <td class="center green">25/min</td>
+                        </tr>
+                            <td>Esteira G</td>
+                            <td>Copo Especial 3</td>
+                            <td>Funcionando</td>
+                            <td class="center">35/min</td>
+                            <td class="center green">34/min</td>
+                        </tr>
+                            <td>Esteira H</td>
+                            <td>Frasco 986</td>
+                            <td>Funcionando</td>
+                            <td class="center">20/min</td>
+                            <td class="center green">25/min</td>
+                        </tr>
+                            <td>Esteira I</td>
+                            <td>Garrafa CB-4</td>
+                            <td>Parado</td>
+                            <td class="center">25/min</td>
+                            <td class="center red">0/min</td>
+                        </tr>
+                    </table>
+                </div>
 
-
-
-
-                    </div>
-
-<<<<<<< HEAD
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-    </div>
-    <div class="card2">
-        <div class="imagem">
-            <img class="garrafa"
-                src="https://static.vecteezy.com/ti/vetor-gratis/p1/4332401-alcool-bebida-vidro-glifo-icones-conjunto-vinho-servico-copos-de-cristal-formas-e-tipos-bebidas-e-bebidas-tipos-garrafas-vinho-tinto-com-rotulos-silhueta-simbolos-ilustracao-isolada-vetor.jpg"><br>
-        </div>
-        <div class="texto2">
-            <h3>PRODUTOS</h3> <br>
-            <div class="listLines">
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <input type="checkbox" name="Est1" id="Est1"> GARRAFAS
-            <div class="listLines">
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <input type="checkbox" name="Est2" id="Est2"> COPOS
-            <div class="listLines">
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <input type="checkbox" name="Est4" id="Est4"> JARROS
-            <div class="listLines">
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <input type="checkbox" name="Est4" id="Est4"> PRATOS
-            <div class="listLines">
-                <div class="line"></div>
-            </div>
-        </div>
-    </div>
             </div>
     </div>
 
@@ -255,153 +224,69 @@
 
     </main>
 
-=======
-                </div>
-            </div>
-            <div class="container">
-                <div class="card">
-                    <div class="texto">
-                        <h3>ESTEIRAS</h3> <br>
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est1" id="Est1">ESTEIRA 1
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est2" id="Est2"> ESTEIRA 2
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est4" id="Est4"> ESTEIRA 3
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est4" id="Est4"> ESTEIRA 4
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <div class="este">
-                            <img class="esteira"
-                                src="https://static.vecteezy.com/ti/vetor-gratis/p3/9965250-ilustracao-contorno-contorno-conveyor-belt-de-step-vetor.jpg">
-                        </div>
 
-                    </div>
-                </div>
+    <script>
+        const ctx = document.getElementById('myChart');
 
-                <div class="card2">
-                    <div class="imagem">
-                        <img class="garrafa"
-                            src="https://static.vecteezy.com/ti/vetor-gratis/p1/4332401-alcool-bebida-vidro-glifo-icones-conjunto-vinho-servico-copos-de-cristal-formas-e-tipos-bebidas-e-bebidas-tipos-garrafas-vinho-tinto-com-rotulos-silhueta-simbolos-ilustracao-isolada-vetor.jpg"><br>
-                    </div>
-
-
-                    <div class="texto2">
-                        <h3>PRODUTOS</h3> <br>
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est1" id="Est1"> GARRAFAS
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est2" id="Est2"> COPOS
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est4" id="Est4"> JARROS
-                        <div class="listLines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <input type="checkbox" name="Est4" id="Est4"> ESPELHOS
-                        <div class="listLines">
-                            <div class="line"></div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-        </main>
->>>>>>> 8bca06faf2e93725df1d021940592514c5895b5a
-
-
-
-
-
-        <script>
-            const ctx = document.getElementById('myChart');
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
-                    datasets: [{
-                        label: 'Lucro Anual',
-                        data: [22000, 25000, 19000, 20000, 17000, 19000, 25000, 29000, 27000, 28000, 25000, 29000],
-                        backgroundColor: "rgb(0, 0, 225)",
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            min: 5000,
-                            max: 30000,
-                            ticks: {
-                                stepSize: 500
-                            }
-
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'Lucro Anual',
+                    data: [22000, 25000, 19000, 20000, 17000, 19000, 25000, 29000, 27000, 28000, 25000, 29000],
+                    backgroundColor: "rgb(0, 0, 225)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 5000,
+                        max: 30000,
+                        ticks: {
+                            stepSize: 500
                         }
+
                     }
                 }
-            });
-        </script>
+            }
+        });
+    </script>
 
 
 
-        <script>
-            const ctxProdução = document.getElementById('myChart Produção');
+    <script>
+        const ctxProdução = document.getElementById('myChart Produção');
 
-            new Chart(ctxProdução, {
-                type: 'bar',
-                data: {
-                    labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
-                    datasets: [{
-                        label: 'Produção',
-                        data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
-                        backgroundColor: "rgb(255, 255, 0)",
-                        borderColor: "rgb(0, 0, 255)",
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            min: 50000,
-                            max: 300000,
-                            ticks: {
-                                stepSize: 5000
-                            }
-
+        new Chart(ctxProdução, {
+            type: 'bar',
+            data: {
+                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'Produção',
+                    data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
+                    backgroundColor: "rgb(255, 255, 0)",
+                    borderColor: "rgb(0, 0, 255)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 50000,
+                        max: 300000,
+                        ticks: {
+                            stepSize: 5000
                         }
+
                     }
                 }
-            });
-        </script>
+            }
+        });
+    </script>
 
     </div>
 

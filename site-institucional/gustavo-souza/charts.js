@@ -5,17 +5,27 @@ const ctx03 = document.getElementById('canvas_chart03');
 new Chart(ctx01, {
     type: 'line',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['10/10', '11/10', '12/10', '13/10', '14/10', '15/10'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Garrafas',
+            data: [1112, 1119, 1333, 1535, 2422, 1243],
+            borderWidth: 1
+        },
+        {
+            label: 'Frascos',
+            data: [1342, 2189, 1873, 1335, 1782, 2243],
+            borderWidth: 1
+        },
+        {
+            label: 'Copos',
+            data: [1282, 1002, 1133, 1200, 1058, 1143],
             borderWidth: 1
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: false
             }
         }
     }
@@ -24,10 +34,10 @@ new Chart(ctx01, {
 new Chart(ctx02, {
     type: 'pie',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Produzido', 'Perda'],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '',
+            data: [79, 21],
             borderWidth: 1
         }]
     },
@@ -43,14 +53,44 @@ new Chart(ctx02, {
 new Chart(ctx03, {
     type: 'line',
     data: {
-        labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6','Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6','Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6'],
+        labels: ['01/10', '02/10', '03/10', '04/10', '05/10', '06/10','07/10', '08/10', '09/10', '10/10', '11/10', '12/10','13/10'],
         datasets: [
             {
-                label: 'Dataset',
-                data: [0,1,1,0,0,1,0,1,1,0,0,1,0,1,1,0,0,1],
+                label: 'Esteira A',
+                data: [1,1,1,1,1,1,1,1,1,1,1,0,1],
                 fill: false,
                 stepped: true,
-            }
+            },
+            {
+                label: 'Esteira B',
+                data: [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                fill: false,
+                stepped: true,
+            },
+            {
+                label: 'Esteira C',
+                data: [1,1,1,1,1,1,0,1,1,1,1,1,1],
+                fill: false,
+                stepped: true,
+            },
+            {
+                label: 'Esteira D',
+                data: [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                fill: false,
+                stepped: true,
+            },
+            {
+                label: 'Esteira E',
+                data: [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                fill: false,
+                stepped: true,
+            },
+            {
+                label: 'Esteira F',
+                data: [1,0,1,1,1,1,1,1,1,1,1,1,1],
+                fill: false,
+                stepped: true,
+            },
         ]
     },
     options: {
@@ -64,6 +104,10 @@ new Chart(ctx03, {
                 display: true,
                 text: (ctx) => 'Step ' + ctx.chart.data.datasets[0].stepped + ' Interpolation',
             }
-        }
+        },
+        maintainAspectRatio: false,
+        
     }
 });
+
+ctx03.canvas.parentNode.style.width = '100%';
