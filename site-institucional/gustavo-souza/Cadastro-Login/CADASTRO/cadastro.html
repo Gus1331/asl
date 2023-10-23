@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELA DE CADASTRO</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+
+<body>
+
+    <div class="main-cadastro">
+
+        <div class="left-cadastro">
+            <img class="logo" src="ASL.png">
+            <img src="imagem-animada.svg" class="imagem-animada" alt="imagem-animada">
+        </div>
+
+        <div class="right-cadastro">
+            <div class="card-cadastro">
+                <div class="head">
+                    <h1>Crie seu cadastro</h1>
+                    <span>Para ser cliente é necessário preencher corretamente o formulário abaixo com os respectivos
+                        dados cadastrais.</span>
+                </div>
+                <hr>
+                <div class="form">
+                    <div>
+                        <div class="formulario-cadastro">
+                            <label for="nome"> Nome: </label>
+                            <input id="input_nome" type="text" name="nome">
+                        </div>
+
+                        <div class="formulario-cadastro">
+                            <label for="email"> Email: </label>
+                            <input id="input_email" type="text" name="email" placeholder="exemplo@email.com">
+                        </div>
+
+                        <div class="formulario-cadastro">
+                            <label for="senha"> Senha: </label>
+                            <input id="input_senha" type="password" name="Senha" placeholder="*********">
+                        </div>
+
+                        <div class="formulario-cadastro">
+                            <label for="telefone"> Telefone: </label>
+                            <input id="input_telefone" type="number" name="telefone" placeholder="91111-1111">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="formulario-cadastro">
+                            <label for="Sobrenome"> Sobrenome: </label>
+                            <input id="input_sobrenome" type="text" name="Sobrenome">
+                        </div>
+
+                        <div class="formulario-cadastro">
+                            <label for="cpfcnpj"> CPF / CPNJ: </label>
+                            <input id="input_cpfcnpj" type="number" name="cpfcnpj" placeholder="123.123.123-00">
+                        </div>
+
+                        <div class="formulario-cadastro">
+                            <label for="confirmarsenha"> Confirme a senha: </label>
+                            <input id="input_senha2" type="password" name="confirmarsenha" placeholder="*********">
+                        </div>
+
+                        <div class="formulario-cadastro">
+                            <label for="cep"> CEP: </label>
+                            <input id="input_cep" type="number" name="cep" placeholder="00000-000">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="end">
+                    <button class="btn-cadastro" onclick="validacaoCadastro()"> CADASTRAR </button>
+                    <span> Ao preencher o formulário acima você concorda com os nossos Termos de uso e nossa Política
+                        de
+                        privacidade.</span>
+                </div>
+
+            </div>
+        </div>
+</body>
+
+</html>
+
+<script>
+    function validacaoCadastro() {
+        var nome = input_nome.value
+        var sobrenome = input_sobrenome.value
+        var email = input_email.value
+        var cpfcnpj = input_cpfcnpj.value
+        var senha = input_senha.value
+        var senha2 = input_senha2.value
+        var telefone = input_telefone.value
+        var CEP = input_cep.value
+
+        if (nome == ``) {
+            input_nome.style.border = "2px solid #ff0000";
+            alert("Nome vazio!")
+
+        } else if (sobrenome == ``) {
+            input_sobrenome.style.border = "2px solid #ff0000";
+            alert("Sobrenome vazio!")
+            // VALIDAÇÃO EMAIL
+        } else if (email == `` || email.indexOf("@") === -1 || email.endsWith(".com") == false) {
+            input_email.style.border = "2px solid #ff0000";
+            if (email == ``) {
+                alert("Email vazio!")
+            } else {
+                alert("Email incorreto!")
+            }
+            // VALIDAÇÃO CPF E CNPJ
+        } else if (cpfcnpj == `` || cpfcnpj.length != 11 && cpfcnpj != 14) {
+            input_cpfcnpj.style.border = "2px solid #ff0000";
+            alert("Cpf ou CPNJ vazio!")
+            // VALIDAÇÃO DA SENHA
+        } else if (senha.length < 8 || senha.indexOf("!") === -1 &&
+            senha.indexOf(".") === -1 &&
+            senha.indexOf("@") === -1 &&
+            senha.indexOf("#") === -1) {
+            input_senha.style.border = "2px solid #ff0000";
+            if (senha.length < 8) {
+                alert("Senha abaixo de 8 caracteres")
+            } else {
+                alert("É necessario que a senha tenha no mínimo ! @ . #")
+            }
+            // COMPARAÇÃO DAS SENHAS
+        } else if (senha != senha2) {
+            input_senha2.style.border = "2px solid #ff0000";
+            alert("Senha diferente!")
+            // VALIDAÇÃO DO TELEFONE
+        } else if (telefone == `` || telefone.length !== 9) {
+            input_telefone.style.border = "2px solid #ff0000";
+            if (telefone == ``) {
+                alert("Telefone Vazia!")
+            } else {
+                alert("telefone suporta soamente 9 caracteres")
+            }
+            // VALIDAÇÃO DO CEP
+        } else if (CEP == `` || CEP.length !== 8) {
+            input_CEP.style.border = "2px solid #ff0000";
+            if (CEP == ``) {
+                alert("CEP vazio")
+            } else {
+                alert("CEP suporta soamente 8 caracteres")
+            }
+            // USUÁRIO CADASTRADO
+        } else {
+            alert(`Bem vindo a Action Sensor Lux, Senhor(a) ${nome}!`)
+        }
+    }
+</script>

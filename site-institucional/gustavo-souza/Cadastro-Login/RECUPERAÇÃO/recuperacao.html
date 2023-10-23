@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELA DE RECUPERAÇÃO</title>
+    <link rel="stylesheet" href="recuperacao.css">
+</head>
+
+<body>
+    <div class="main-rec">
+        <div class="left-rec">
+            <div class="card-rec">
+                <h1>Recupere sua senha </h1>
+                <span>Para recuperar sua senha, informe o seu endereço de email que nós enviaremos um link para a
+                    alteração da senha.</span>
+                <hr id="hr1">
+                <div class="form">
+                    <div class="formulario-rec">
+                        <label for="email"> Email: </label>
+                        <input type="text" id="input_email" name="email" placeholder="exemplo@email.com">
+                    </div>
+                </div>
+                <hr>
+
+                <div class="end">
+                    <button class="btn-rec" onclick="rec()"> ENVIAR </button>
+                </div>
+            </div>
+        </div>
+        <div class="right-rec">
+            <img class="logo" src="ASL.png">
+            <img class="imagem-animada" src="imagem-animada.png">
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function rec() {
+        var email = input_email.value;
+
+        if (email == `` || email.indexOf("@") === -1 || email.endsWith(".com") == false) {
+            if (email == ``) {
+                alert("Email vazio!")
+            } else {
+                alert("Email incorreto!")
+            }
+        } else {
+            alert("Enviamos um email com instruções de como redefinir sua senha!")
+        }
+    }
+</script>

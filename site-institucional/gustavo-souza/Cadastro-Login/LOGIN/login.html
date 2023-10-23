@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELA DE LOGIN</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <div class="card-login">
+                <h1>Login</h1>
+                <hr>
+                <div class="form">
+                    <div class="formulario-login">
+                        <label for="email"> Email: </label>
+                        <input type="text" id="input_email" name="email" placeholder="exemplo@email.com">
+                    </div>
+
+                    <div class="formulario-login">
+                        <label for="senha"> Senha: </label>
+                        <input type="password" id="input_senha" name="Senha" placeholder="*********">
+                    </div>
+
+                </div>
+                <hr>
+                <div class="end">
+                    <div class="options">
+                        <div> <input type="checkbox">
+                            <span>Lembre de mim</span>
+                        </div>
+                        <span><a onclick="">Esqueceu sua senha?</a></span>
+                    </div>
+                    <button class="btn-login" onclick="login()"> ENTRAR </button>
+                    <span>Não tem uma conta? <a href="CADASTRO\cadastro.html">Cadastre-se</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="right-login">
+            <img class="logo" src="ASL.png">
+            <img class="imagem-animada" src="imagem-animada.png">
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function login() {
+        var email = input_email.value;
+        var senha = input_senha.value;
+
+        if (email != "teste@email.com") {
+            alert("Email incorreto!")
+        } else if (senha != "senha123.") {
+            alert("Senha incorreta!")
+        } else {
+            alert("Você logou com sucesso!")
+        }
+    }
+</script>

@@ -1,0 +1,136 @@
+body {
+  margin: 0px;
+  font-family: "Noto Sans NKo Unjoined", sans-serif;
+}
+
+.main-rec {
+  width: 100vw;
+  height: 100vh;
+  background: #201b2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-rec {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.right-rec .logo {
+  width: 200px;
+}
+
+.right-rec .imagem-animada {
+  width: 30vw;
+}
+
+.left-rec {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-rec .card-rec {
+  height: 50%;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 35px;
+  background: #2f2841;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #00000056;
+}
+
+.left-rec .card-rec h1 {
+  color: white;
+}
+.left-rec .card-rec span {
+  color: white;
+}
+
+.card-rec .form {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  flex-direction: column;
+}
+
+.formulario-rec {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 10px 0px;
+}
+
+.formulario-rec input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  background: #514869;
+  color: #f0ffffde;
+  font-size: 12pt;
+  box-shadow: 0px 10px 40px #00000056;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.formulario-rec label {
+  color: #f0ffffde;
+  margin-bottom: 10px;
+}
+
+.formulario-rec input::placeholder {
+  color: #f0ffff94;
+}
+
+.btn-rec {
+  width: 100%;
+  padding: 16px 0px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-weight: 800;
+  color: white;
+  background: #ff0000;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px #ff0000;
+}
+
+.end {
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.end .options {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.end span {
+  color: white;
+}
+
+hr {
+  width: 100%;
+}
+
+a {
+  color: white;
+}
