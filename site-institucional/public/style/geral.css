@@ -12,7 +12,6 @@
 }
 
 body {
-    display: flex;
     font-family: 'Comfortaa', Verdana, Geneva, Tahoma, sans-serif;
     background: linear-gradient(120deg, #D32D2D 0%, #2958b6 45%, #2958b6 55%, #ffbc35 100%);
     background-size: cover;
@@ -28,7 +27,7 @@ body {
     align-items: center;
 }
 
-.containerGeral main {
+.containerFull main {
     background-color: white;
     display: flex;
     width: 81vw;
@@ -36,9 +35,6 @@ body {
     border-radius: 15px;
     overflow: hidden;
     justify-content: center;
-    
-    margin-left: 100px;
-    margin-top: 50px;
 }
 
 .sidebar {
