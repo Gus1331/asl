@@ -12,13 +12,12 @@
 <body>
     <div class="containerFull">
 
-        <main>
+        <main id="main_swap">
             <div class="sidebar">
 
                 <div class="topSidebar">
                     <div class="icon">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
                     </div>
                     <h2>User123</h2>
                     <div class="userOptions">
@@ -34,8 +33,8 @@
                         </div>
                     </div>
                     <ul>
-                        <a href="" rel="prev">
-                            <li class="selected">
+                        <a href="producao.html" rel="prev">
+                            <li>
                                 Produção
                                 <div class="icon">
                                     <img src="assets/content/producao-icon.png">
@@ -71,14 +70,14 @@
                         <div class="listLines">
                             <div class="line"></div>
                             <div class="line"></div>
-                        <a href="configuracoes.html" rel="next">
+                            <a href="configuracoes.html" rel="next">
+                        </div>
+                        <li class="selected">
+                            Configurações
+                            <div class="icon">
+                                <img src="assets/content/config-icon.png">
                             </div>
-                            <li>
-                                Configurações
-                                <div class="icon">
-                                    <img src="assets/content/config-icon.png">
-                                </div>
-                            </li>
+                        </li>
                         </a>
                     </ul>
                 </div>
@@ -93,7 +92,50 @@
             </div>
             <div class="dashboard">
 
+                <div class="config" id="div_config">
+                    <div class="opções">
+                        <h4>Configuração Geral</h4>
+                        <hr id="hr_1">
+                        <div class="opc">
+                            <img src="assets/content/notificacao.png" width="40px">
+                            <h4>Notificações</h4>
+                        </div>
 
+                        <div class="opc">
+                            <img src="assets/content/icon-acessibilidade.png" width="40px">
+                            <h4>Acessibilidade</h4>
+                        </div>
+                        <div class="opc">
+                            <img src="assets/content/sup.png" width="40px">
+                            <h4>Suporte Remoto</h4>
+                        </div>
+                        <hr id="hr_2">
+                        <h3>Temas:</h3>
+                    </div>
+
+                    <div class="opções2">
+                        <h4>Segurança</h4>
+                        <hr id="hr_3">
+                        <div class="opc2">
+                            <img src="assets/content/gerenciamento.png" width="40px">
+                            <h4>Gerenciar Permissões</h4>
+                        </div>
+                        <div class="opc2">
+                            <img src="assets/content/backupconfig.png" width="40px">
+                            <h4>Backup de Dados</h4>
+                        </div>
+                        <div class="opc2">
+                            <img src="assets/content/senha.png" width="35px">
+                            <h4>Troca de senha</h4>
+                            <br>
+                        </div>
+
+                        <hr id="hr_4">
+
+                        <span id="btn_tema"> <button onclick="swap(true)" class="botao">Tema Claro</button> </span>
+
+                    </div>
+                </div>
             </div>
         </main>
         <div class="gradient"></div>
@@ -102,3 +144,32 @@
 </body>
 
 </html>
+
+<script>
+    function swap(n) {
+        var btn = document.getElementById("btn_tema");
+        var main = document.getElementById("main_swap");
+        var config = document.getElementById("div_config");
+        var hrs = document.getElementsByClassName("black");
+
+        if (n) {
+            btn_tema.innerHTML = `<button onclick="swap(false)" class="botao">Tema Escuro</button>`;
+            main.style.backgroundColor = "var(--colorSwap2)";
+            config.style.color = "var(--colorSwap1)";
+            hr_1.style.border = "var(--colorSwap1) solid 1px";
+            hr_2.style.border = "var(--colorSwap1) solid 1px";
+            hr_3.style.border = "var(--colorSwap1) solid 1px";
+            hr_4.style.border = "var(--colorSwap1) solid 1px";
+        }
+        else {
+            btn_tema.innerHTML = `<button onclick="swap(true)" class="botao">Tema Claro</button>`;
+            main.style.backgroundColor = "var(--colorSwap1)";
+            config.style.color = "var(--colorSwap2)";
+            hr_1.style.border = "var(--colorSwap2) solid 1px";
+            hr_2.style.border = "var(--colorSwap2) solid 1px";
+            hr_3.style.border = "var(--colorSwap2) solid 1px";
+            hr_4.style.border = "var(--colorSwap2) solid 1px";
+        }
+
+    }
+</script>

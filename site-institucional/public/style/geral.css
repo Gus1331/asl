@@ -276,7 +276,7 @@ main .whiteBoard .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    cursor: pointer;
 }
 .filtro button img{
     width: 20px;
