@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="geralStyle.css">
+    <link rel="stylesheet" href="style/geral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
 
 
 </head>
@@ -23,7 +24,7 @@
                     </div>
                     <h2>User123</h2>
                     <div class="userOptions">
-                        <img src="../public/assets/content/useroptions-icon.png">
+                        <img src="assets/content/useroptions-icon.png">
                     </div>
                 </div>
 
@@ -31,15 +32,15 @@
                     <div class="listTitle">
                         <h1>Dashboards</h1>
                         <div class="icon">
-                            <img src="../public/assets/content/dashbord-icon.png">
+                            <img src="assets/content/dashbord-icon.png">
                         </div>
                     </div>
                     <ul>
-                        <a href="dashbord.html">
+                        <a href="producao.html" rel="prev">
                             <li class="li">
                                 Produção
                                 <div class="icon">
-                                    <img src="../public/assets/content/producao-icon.png">
+                                    <img src="assets/content/producao-icon.png">
                                 </div>
                             </li>
                         </a>
@@ -47,40 +48,46 @@
                             <div class="line"></div>
                             <div class="line"></div>
                         </div>
-                        <li>
-                            Renda
-                            <div class="icon">
-                                <img src="../public/assets/content/renda-icon.png">
-                            </div>
-                        </li>
+                        <a href="renda.html" rel="prev">
+                            <li>
+                                Renda
+                                <div class="icon">
+                                    <img src="assets/content/renda-icon.png">
+                                </div>
+                            </li>
+                        </a>
                         <div class="listLines">
                             <div class="line"></div>
                             <div class="line"></div>
                         </div>
                         <div class="selected">
-                            <li>
-                                Geral
-                                <div class="icon">
-                                    <img src="../public/assets/content/geral-icon.png">
-                                </div>
+                            <a href="" rel="prev">
+                                <li>
+                                    Geral
+                                    <div class="icon">
+                                        <img src="assets/content/geral-icon.png">
+                                    </div>
+                                </li>
+                            </a>
                         </div>
-                        </li>
                         <div class="listLines">
                             <div class="line"></div>
                             <div class="line"></div>
                         </div>
-                        <li>
-                            Configurações
-                            <div class="icon">
-                                <img src="../public/assets/content/config-icon.png">
-                            </div>
-                        </li>
+                        <a href="configuracoes.html" rel="next">
+                            <li>
+                                Configurações
+                                <div class="icon">
+                                    <img src="assets/content/config-icon.png">
+                                </div>
+                            </li>
+                        </a>
                     </ul>
                 </div>
 
                 <div class="bottomSidebar">
                     <div class="logo icon">
-                        <img src="../public/assets/content/logo.png">
+                        <img src="assets/content/logo.png">
                     </div>
                     <p class="version">Versão 1.00</p>
                 </div>
@@ -101,12 +108,12 @@
                 <div class="dashboard">
                     <div class="chart1">
                         <div>
-                            <canvas id="myChart"></canvas>
+                            <canvas id="canvas_chart04"></canvas>
                         </div>
                     </div>
                     <div class="chart2">
                         <div>
-                            <canvas id="myChart Produção"></canvas>
+                            <canvas id="canvas_chart05"></canvas>
                         </div>
                     </div>
                 </div>
@@ -115,7 +122,7 @@
                 <nav class="filtro">
                     <div class="search">
                         <input type="text">
-                        <button><img src="../public/assets/content/lupa-icon.png"></button>
+                        <button><img src="assets/content/lupa-icon.png"></button>
                     </div>
                     <span>Filtrar por:</span>
                     <select id="select_filtrar_produto">
@@ -196,23 +203,23 @@
                             <td class="center">25/min</td>
                             <td class="center green">25/min</td>
                         </tr>
-                            <td>Esteira G</td>
-                            <td>Copo Especial 3</td>
-                            <td>Funcionando</td>
-                            <td class="center">35/min</td>
-                            <td class="center green">34/min</td>
+                        <td>Esteira G</td>
+                        <td>Copo Especial 3</td>
+                        <td>Funcionando</td>
+                        <td class="center">35/min</td>
+                        <td class="center green">34/min</td>
                         </tr>
-                            <td>Esteira H</td>
-                            <td>Frasco 986</td>
-                            <td>Funcionando</td>
-                            <td class="center">20/min</td>
-                            <td class="center green">25/min</td>
+                        <td>Esteira H</td>
+                        <td>Frasco 986</td>
+                        <td>Funcionando</td>
+                        <td class="center">20/min</td>
+                        <td class="center green">25/min</td>
                         </tr>
-                            <td>Esteira I</td>
-                            <td>Garrafa CB-4</td>
-                            <td>Parado</td>
-                            <td class="center">25/min</td>
-                            <td class="center red">0/min</td>
+                        <td>Esteira I</td>
+                        <td>Garrafa CB-4</td>
+                        <td>Parado</td>
+                        <td class="center">25/min</td>
+                        <td class="center red">0/min</td>
                         </tr>
                     </table>
                 </div>
@@ -223,52 +230,17 @@
 
 
     </main>
-
-
+    
     <script>
-        const ctx = document.getElementById('myChart');
+        const ctx05 = document.getElementById('canvas_chart05');
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
-                datasets: [{
-                    label: 'Lucro Anual',
-                    data: [22000, 25000, 19000, 20000, 17000, 19000, 25000, 29000, 27000, 28000, 25000, 29000],
-                    backgroundColor: "rgb(0, 0, 225)",
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        min: 5000,
-                        max: 30000,
-                        ticks: {
-                            stepSize: 500
-                        }
-
-                    }
-                }
-            }
-        });
-    </script>
-
-
-
-    <script>
-        const ctxProdução = document.getElementById('myChart Produção');
-
-        new Chart(ctxProdução, {
+        new Chart(ctx05, {
             type: 'bar',
             data: {
                 labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
                 datasets: [{
                     label: 'Produção',
                     data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
-                    backgroundColor: "rgb(255, 255, 0)",
-                    borderColor: "rgb(0, 0, 255)",
                     borderWidth: 1
                 }]
             },
@@ -280,6 +252,32 @@
                         max: 300000,
                         ticks: {
                             stepSize: 5000
+                        }
+
+                    }
+                }
+            }
+        });
+        const ctx04 = document.getElementById('canvas_chart04');
+
+        new Chart(ctx04, {
+            type: 'bar',
+            data: {
+                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+                datasets: [{
+                    label: 'Lucro Anual',
+                    data: [22000, 25000, 19000, 20000, 17000, 19000, 25000, 29000, 27000, 28000, 25000, 29000],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 5000,
+                        max: 30000,
+                        ticks: {
+                            stepSize: 500
                         }
 
                     }

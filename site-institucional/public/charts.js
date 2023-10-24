@@ -36,17 +36,9 @@ new Chart(ctx02, {
     data: {
         labels: ['Produzido', 'Perda'],
         datasets: [{
-            label: '',
             data: [79, 21],
             borderWidth: 1
         }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
     }
 });
 
@@ -111,3 +103,6 @@ new Chart(ctx03, {
 });
 
 ctx03.canvas.parentNode.style.width = '100%';
+
+
+

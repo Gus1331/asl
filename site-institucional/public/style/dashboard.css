@@ -8,11 +8,10 @@
     box-sizing: border-box;
     list-style-position: inside;
     color: unset;
-    text-decoration: none;
+    text-decoration: none ;
 }
 
 body {
-    display: flex;
     font-family: 'Comfortaa', Verdana, Geneva, Tahoma, sans-serif;
     background: linear-gradient(120deg, #D32D2D 0%, #2958b6 45%, #2958b6 55%, #ffbc35 100%);
     background-size: cover;
@@ -28,17 +27,13 @@ body {
     align-items: center;
 }
 
-.containerGeral main {
+.containerFull main {
     background-color: white;
     display: flex;
     width: 81vw;
     height: 87vh;
     border-radius: 15px;
     overflow: hidden;
-    justify-content: center;
-    
-    margin-left: 100px;
-    margin-top: 50px;
 }
 
 .sidebar {
@@ -160,132 +155,77 @@ body {
 
 
 /* CHARTS */
-.dashboard {
-    width: 100%;
-    height: 55%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 8px;
-}
-.chart1{
-    justify-content: center;
-    margin-top: 30px;
-}
- /*Cards*/
-main .whiteBoard .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
-}
-
-
-
-.card2{
-    width: 270px;
-    height: 280px;
-    background-color: rgb(226, 43, 43);
-    border-radius: 20px;
-    display: flex;
-    margin-top: 10px;
-    justify-content: right;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-right: 15px;
-    box-shadow: 10px 5px 5px rgb(53, 53, 53);
-}
-.garrafa{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-top: 5px;
-    justify-content: center;
-}
-.texto2{
-    color: aliceblue;
-    justify-content: center;
-    text-align: center;
-    border-radius: 15px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    flex-direction: column;
-    text-align: center;
-    width: 150px;
-
-}
-
-.whiteBoard{
-    width: 79%;
+.dashboard{
+    width: 74%;
     height: 100%;
-    overflow-y: scroll;
-}
-/* Tabela esteiras */
-.container table{
-    width: 96%;
-    margin: 0 auto 50px auto;
-    background-color: #cac9cf;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.9em;
-}
-.container table th, .container table td{
-    padding: 5px;
-    border: 1px solid rgb(153, 153, 153);
-}
-.container table th{
-    border: 1px solid rgb(44, 44, 44);
-    background-color: #777777;
-}
-.container table .center{
-    text-align: center;
-}
-.container table .red{
-    color: red;
-}
-.container table .green{
-    color: green;
-}
-
-/* Filtro da tabela */
-.whiteBoard .filtro{
-    width: 96%;
-    background-color: #1e1e1e;
     display: flex;
-    margin: auto;
-    padding: 4px;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+}
+.dashboardTop1 {
+    display: flex;
+    justify-content: space-evenly;
+    height: 55%;
     align-items: center;
-    color: white;
 }
-.filtro .search{
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 18px;
+.chart01 {
+    width: 60%;
 }
-.filtro .search input{
-    margin-left: 15px;
-    border: none;
-}
+.chart02 {
+    width: 30%;
 
-.filtro button{
-    height: 35px;
-    width: 35px;
-    border: none;
-    background-color: gray;
-    border-radius: 50%;
+}
+.chart03{
+    width: 80%;
+    height: 30%;
+    align-self: center;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
 }
-.filtro button img{
-    width: 20px;
+
+.chart04{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center;    
 }
-.filtro input, .filtro select{
-    height: 35px;
-    border-radius: 5px;
+
+/* Renda */
+.dashboard2{
+    display: flex;
+    flex-direction: column;
+}
+.dashboardTop3{
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.chart07, .chart08 , .chart09{
+    width: 220px;
+    text-align: center;
+}
+.dashboardMid3{
+    display: flex;
+    justify-content: space-evenly;
+}
+.dashboardMid3 .chart10{
+    width: 60%;
+}
+.dashboardMid3 table{
+    background-color: rgb(218, 232, 243);
+    font-size: 0.8em;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 200px;
+}
+.dashboardMid3 h3{
+    text-align: center;
+}
+table th{
+    background-color: rgba(116, 241, 235, 0.459);
+}
+table th, table td{
+    padding: 3px;
+    border: 1px solid #1e1e1e67;
 }
