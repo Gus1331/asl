@@ -13,14 +13,14 @@
 </head>
 
 <body>
-    <div class="containerGeral">
+    <div class="containerFull">
         <main>
             <div class="sidebar">
 
                 <div class="topSidebar">
                     <div class="icon">
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIGhR9so16LSang39t4pWu9uUS6YgH4xl03U_9ni2CiGF2D7cYRbZrUyEGO71NF_lOork&usqp=CAU">
+                            src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
                     </div>
                     <h2>User123</h2>
                     <div class="userOptions">
@@ -155,13 +155,15 @@
                             <th>Identificação</th>
                             <th>Produto</th>
                             <th>Status</th>
-                            <th>Produção Estimada</th>
-                            <th>Produção Real</th>
+                            <th>Tempo</th>
+                            <th>Prod. Estimada</th>
+                            <th>Prod. Real</th>
                         </tr>
                         <tr>
                             <td>Esteira A</td>
                             <td>Garrafa CB-4</td>
                             <td>Funcionando</td>
+                            <td class="center">18:19:00</td>
                             <td class="center">25/min</td>
                             <td class="center green">26/min</td>
                         </tr>
@@ -169,6 +171,7 @@
                             <td>Esteira B</td>
                             <td>Frasco 986</td>
                             <td>Parado</td>
+                            <td class="center">00:54:00</td>
                             <td class="center">22/min</td>
                             <td class="center red">0/min</td>
                         </tr>
@@ -176,6 +179,7 @@
                             <td>Esteira C</td>
                             <td>Frasco 234</td>
                             <td>Funcionando</td>
+                            <td class="center">12:51:05</td>
                             <td class="center">25/min</td>
                             <td class="center red">16/min</td>
                         </tr>
@@ -184,6 +188,7 @@
                             <td>Esteira D</td>
                             <td>Garrafa HJ-4</td>
                             <td>Funcionando</td>
+                            <td class="center">98:39:00</td>
                             <td class="center">26/min</td>
                             <td class="center green">24/min</td>
                         </tr>
@@ -192,6 +197,7 @@
                             <td>Esteira E</td>
                             <td>Garrafa CB-8</td>
                             <td>Parado</td>
+                            <td class="center">18:29:00</td>
                             <td class="center">25/min</td>
                             <td class="center red">0/min</td>
                         </tr>
@@ -200,24 +206,28 @@
                             <td>Esteira F</td>
                             <td>Copo Especial 3</td>
                             <td>Funcionando</td>
+                            <td class="center">18:19:00</td>
                             <td class="center">25/min</td>
                             <td class="center green">25/min</td>
                         </tr>
                         <td>Esteira G</td>
                         <td>Copo Especial 3</td>
                         <td>Funcionando</td>
+                        <td class="center">65:29:00</td>
                         <td class="center">35/min</td>
                         <td class="center green">34/min</td>
                         </tr>
                         <td>Esteira H</td>
                         <td>Frasco 986</td>
                         <td>Funcionando</td>
+                        <td class="center">72:44:00</td>
                         <td class="center">20/min</td>
                         <td class="center green">25/min</td>
                         </tr>
                         <td>Esteira I</td>
                         <td>Garrafa CB-4</td>
                         <td>Parado</td>
+                        <td class="center">28:59:00</td>
                         <td class="center">25/min</td>
                         <td class="center red">0/min</td>
                         </tr>
@@ -241,7 +251,8 @@
                 datasets: [{
                     label: 'Produção',
                     data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
-                    borderWidth: 1
+                    borderWidth: 1,
+                    backgroundColor: '#FF7A48',
                 }]
             },
             options: {
@@ -266,18 +277,19 @@
                 labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
                 datasets: [{
                     label: 'Lucro Anual',
-                    data: [22000, 25000, 19000, 20000, 17000, 19000, 25000, 29000, 27000, 28000, 25000, 29000],
-                    borderWidth: 1
+                    data: [2200000, 2500000, 1900000, 2000000, 1700000, 1900000, 2500000, 2900000, 2700000, 2800000, 2500000, 2900000],
+                    borderWidth: 1,
+                    backgroundColor: '#103778',
                 }]
             },
             options: {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        min: 5000,
-                        max: 30000,
+                        min: 500000,
+                        max: 3000000,
                         ticks: {
-                            stepSize: 500
+                            stepSize: 50000
                         }
 
                     }
