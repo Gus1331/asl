@@ -55,8 +55,8 @@
                         </div>
 
                         <div class="formulario-cadastro">
-                            <label for="cpfcnpj"> CPF / CPNJ: </label>
-                            <input id="input_cpfcnpj" type="number" name="cpfcnpj" placeholder="123.123.123-00">
+                            <label for="cpf"> CPF: </label>
+                            <input id="input_cpf" type="number" name="cpf" placeholder="123.123.123-00">
                         </div>
 
                         <div class="formulario-cadastro">
@@ -89,7 +89,7 @@
         var nome = input_nome.value
         var sobrenome = input_sobrenome.value
         var email = input_email.value
-        var cpfcnpj = input_cpfcnpj.value
+        var cpf = input_cpf.value
         var senha = input_senha.value
         var senha2 = input_senha2.value
         var telefone = input_telefone.value
@@ -102,52 +102,54 @@
         } else if (sobrenome == ``) {
             input_sobrenome.style.border = "2px solid #ff0000";
             alert("Sobrenome vazio!")
-            // VALIDAÇÃO EMAIL
-        } else if (email == `` || email.indexOf("@") === -1 || email.endsWith(".com") == false) {
+            
+        } else if (email == `` || email.indexOf("@") === -1 || email.endsWith(".com") == false) { // VALIDAÇÃO EMAIL
             input_email.style.border = "2px solid #ff0000";
             if (email == ``) {
                 alert("Email vazio!")
             } else {
                 alert("Email incorreto!")
             }
-            // VALIDAÇÃO CPF E CNPJ
-        } else if (cpfcnpj == `` || cpfcnpj.length != 11 && cpfcnpj != 14) {
-            input_cpfcnpj.style.border = "2px solid #ff0000";
+            
+        } else if (cpf == `` || cpf.length != 11) { // VALIDAÇÃO CPF E CNPJ
+            input_cpf.style.border = "2px solid #ff0000";
             alert("Cpf ou CPNJ vazio!")
-            // VALIDAÇÃO DA SENHA
-        } else if (senha.length < 8 || senha.indexOf("!") === -1 &&
+            
+        } else if (senha.length < 8 || senha.indexOf("!") === -1 && // VALIDAÇÃO DA SENHA
             senha.indexOf(".") === -1 &&
             senha.indexOf("@") === -1 &&
             senha.indexOf("#") === -1) {
             input_senha.style.border = "2px solid #ff0000";
+
             if (senha.length < 8) {
                 alert("Senha abaixo de 8 caracteres")
             } else {
                 alert("É necessario que a senha tenha no mínimo ! @ . #")
             }
-            // COMPARAÇÃO DAS SENHAS
-        } else if (senha != senha2) {
+            
+        } else if (senha != senha2) { // COMPARAÇÃO DAS SENHAS
             input_senha2.style.border = "2px solid #ff0000";
             alert("Senha diferente!")
-            // VALIDAÇÃO DO TELEFONE
-        } else if (telefone == `` || telefone.length !== 9) {
+            
+        } else if (telefone == `` || telefone.length !== 9) { // VALIDAÇÃO DO TELEFONE
             input_telefone.style.border = "2px solid #ff0000";
             if (telefone == ``) {
                 alert("Telefone Vazia!")
             } else {
                 alert("telefone suporta soamente 9 caracteres")
             }
-            // VALIDAÇÃO DO CEP
-        } else if (CEP == `` || CEP.length !== 8) {
+            
+        } else if (CEP == `` || CEP.length !== 8) { // VALIDAÇÃO DO CEP
             input_CEP.style.border = "2px solid #ff0000";
             if (CEP == ``) {
                 alert("CEP vazio")
             } else {
                 alert("CEP suporta soamente 8 caracteres")
             }
-            // USUÁRIO CADASTRADO
-        } else {
+            
+        } else { // USUÁRIO CADASTRADO
             alert(`Bem vindo a Action Sensor Lux, Senhor(a) ${nome}!`)
+            window.location.assign("login.html");
         }
     }
 </script>

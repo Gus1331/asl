@@ -34,7 +34,7 @@
                         <div> <input type="checkbox">
                             <span>Lembre de mim</span>
                         </div>
-                        <span><a onclick="">Esqueceu sua senha?</a></span>
+                        <span><a href="recuperacao.html">Esqueceu sua senha?</a></span>
                     </div>
                     <button class="btn-login" onclick="login()"> ENTRAR </button>
                     <span>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></span>
@@ -57,10 +57,11 @@
 
         if (email != "teste@email.com") {
             alert("Email incorreto!")
-        } else if (senha != "senha123.") {
+        } else if (senha != "senha123") {
             alert("Senha incorreta!")
         } else {
             alert("Você logou com sucesso!")
+            window.location.assign("producao.html");
         }
     }
 </script>

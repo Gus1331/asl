@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styleCalculadora.css">
+    <title>Calculadoras</title>
+    <link rel="stylesheet" href="style/calculadora.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="imgs/logo.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
 </head>
+
 <body>
     <div class="header">
-        <h1>< VOLTAR</h1>
-        <h1 class="h12">CALCULADORA ORÇAMENTAL</h1>
-        <img src="imgs/logo.ico" alt="logoASL">
+        <a href="index.html">
+            <h1>VOLTAR</h1>
+        </a>
+                <h1 class="h12">CALCULADORA ORÇAMENTAL</h1>
+                <img src="assets/content/logo.png" alt="logoASL">
     </div>
     <div class="social">
         <div class="box1">
             <div>
                 <div class="div_dados">
-                    <label for="numFuncionarios">Numero de Funcionários:</label> 
+                    <label for="numFuncionarios">Numero de Funcionários:</label>
                     <input type="number" min="0" id="numFuncionarios"><br>
                 </div>
-            
+
                 <div class="div_dados">
                     <label for="salFuncionarios">Média salarial por funcionário em R$:</label>
                     <input type="number" id="salFuncionarios"><br>
                 </div>
-            
+
                 <div class="div_dados">
                     <label for="quantidadeEsteiras">Quantidade de esteiras para instalação do sensor:</label>
                     <input type="number" min="0" id="quantidadeEsteiras"><br>
                 </div>
-            
+
                 <div class="div_dados">
                     <label for="tempoEstimadoContrato">Tempo estimado de contrato em meses:</label>
                     <input type="number" min="0" id="tempoEstimadoContrato"><br>
@@ -42,20 +46,21 @@
             <hr>
             <div class="div_button">
                 <button class="botaoPrincipal" onclick="simularContrato();">
-                SIMULE AGORA!
+                    SIMULE AGORA!
                 </button>
             </div>
-            
+
         </div>
         <div class="box2">
             <p id="p_simulacao">
 
             </p>
         </div>
-        
+
     </div>
-    
+
 </body>
+
 </html>
 <script>
     function simularContrato() {
@@ -84,6 +89,9 @@
 
             <p>Enquanto com a nossa solução, sua empresa gastará apenas <span class= 'green destaque'>R$${custos}.00</span>, economizando em média <span class= 'green destaque'>R$${economizado}.00</span>.
             </p>
+            <button class="botaoPrincipal" onclick="redirecionar();">
+                    Crie uma conta agora!
+                </button>
             `;
         }
         else {
@@ -92,6 +100,9 @@
 
     }
 
+    function redirecionar(){
+        window.location.assign("cadastro.html")
+    }
     function abrir_box() {
         info.style.display = 'flex';
     }
