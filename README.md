@@ -20,6 +20,12 @@ Visite nosso site **[Clickando aqui](https://gus1331.github.io/asl/site-instituc
 
 ### Overview
 
+<img src="readme-content/home1.jpeg">
+<img src="readme-content/home2.jpeg">
+<img src="readme-content/cadastro.jpeg">
+<img src="readme-content/login.jpeg">
+<img src="readme-content/dash1.jpeg">
+<img src="readme-content/dash2.jpeg">
 
 <!-- Imagens do site serão aqui -->
 
@@ -44,3 +50,6 @@ Tecnologias usadas:
 ---
 
 ### Contribuidores do Projeto
+
+Srint 2
+<img src="readme-content/grupo2.jpeg">
