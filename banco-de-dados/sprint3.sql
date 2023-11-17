@@ -64,7 +64,16 @@ ALTER TABLE esteira MODIFY COLUMN condicao VARCHAR(11), ADD CONSTRAINT checkCond
 
 INSERT INTO empresa (nome, cnpj, qtdSensores) VALUES
 ('Action Sensor Lux', '11111111111111', '100');
-    
+
+INSERT INTO esteira(fkEmpresa, identificacao, produto, condicao, producaoEstimadaPorMin) VALUES
+(100, 'Esteira A', 'copo', 'funcionando', 25);
+
+INSERT INTO sensor(tipo, fkEsteira) VALUES
+('entrada', 10000);
+
+INSERT INTO registro(fkSensor) VALUES
+(5000);
+
 -- SELECTS -----------------------------------------------------
 SELECT * FROM usuario;
 SELECT * FROM sensor;
