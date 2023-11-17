@@ -4,6 +4,7 @@ package-lock.json
 
 # Caso você renomeie seu diretório /site, altere também nas linhas abaixo:
 arduino/node_modules
+arduino-asl/node_modules
 site/node_modules
 site/package-lock.json
 
