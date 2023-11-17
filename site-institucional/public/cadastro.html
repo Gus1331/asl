@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="listar()">
 
     <div class="main-cadastro">
 
@@ -65,14 +65,16 @@
                         </div>
 
                         <div class="formulario-cadastro">
-                            <label for="cep"> CEP: </label>
-                            <input id="input_cep" type="number" name="cep" placeholder="00000-000">
+                            <label for="cnpj"> CNPJ: </label>
+                            <select name="cnpj" id="listaEmpresas">
+                                <option selected>Selecione uma empresa</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="end">
-                    <button class="btn-cadastro" onclick="validacaoCadastro()"> CADASTRAR </button>
+                    <button class="btn-cadastro" onclick="cadastrar()"> CADASTRAR </button>
                     <span> Ao preencher o formulário acima você concorda com os nossos Termos de uso e nossa Política
                         de
                         privacidade.</span>
@@ -85,7 +87,7 @@
 </html>
 
 <script>
-    function validacaoCadastro() {
+    function cadastrar() {
         var nome = input_nome.value
         var sobrenome = input_sobrenome.value
         var email = input_email.value
@@ -93,7 +95,7 @@
         var senha = input_senha.value
         var senha2 = input_senha2.value
         var telefone = input_telefone.value
-        var CEP = input_cep.value
+        var empresa = listaEmpresas.value
 
         if (nome == ``) {
             input_nome.style.border = "2px solid #ff0000";
@@ -102,7 +104,7 @@
         } else if (sobrenome == ``) {
             input_sobrenome.style.border = "2px solid #ff0000";
             alert("Sobrenome vazio!")
-            
+
         } else if (email == `` || email.indexOf("@") === -1 || email.endsWith(".com") == false) { // VALIDAÇÃO EMAIL
             input_email.style.border = "2px solid #ff0000";
             if (email == ``) {
@@ -110,11 +112,11 @@
             } else {
                 alert("Email incorreto!")
             }
-            
-        } else if (cpf == `` || cpf.length != 11) { // VALIDAÇÃO CPF E CNPJ
+
+        } else if (cpf == `` || cpf.length != 11) { // VALIDAÇÃO CPF
             input_cpf.style.border = "2px solid #ff0000";
-            alert("Cpf ou CPNJ vazio!")
-            
+            alert("CPF vazio!")
+
         } else if (senha.length < 8 || senha.indexOf("!") === -1 && // VALIDAÇÃO DA SENHA
             senha.indexOf(".") === -1 &&
             senha.indexOf("@") === -1 &&
@@ -126,11 +128,11 @@
             } else {
                 alert("É necessario que a senha tenha no mínimo ! @ . #")
             }
-            
+
         } else if (senha != senha2) { // COMPARAÇÃO DAS SENHAS
             input_senha2.style.border = "2px solid #ff0000";
             alert("Senha diferente!")
-            
+
         } else if (telefone == `` || telefone.length !== 9) { // VALIDAÇÃO DO TELEFONE
             input_telefone.style.border = "2px solid #ff0000";
             if (telefone == ``) {
@@ -138,18 +140,60 @@
             } else {
                 alert("telefone suporta soamente 9 caracteres")
             }
-            
-        } else if (CEP == `` || CEP.length !== 8) { // VALIDAÇÃO DO CEP
-            input_CEP.style.border = "2px solid #ff0000";
-            if (CEP == ``) {
-                alert("CEP vazio")
-            } else {
-                alert("CEP suporta soamente 8 caracteres")
-            }
-            
+
         } else { // USUÁRIO CADASTRADO
-            alert(`Bem vindo a Action Sensor Lux, Senhor(a) ${nome}!`)
-            window.location.assign("login.html");
+
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nome,
+                    emailServer: email,
+                    senhaServer: senha,
+                    empresaServer: empresa,
+                    telefoneServer: telefone,
+                    cpfServer: cpf,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        alert(`Bem vindo a Action Sensor Lux, Senhor(a) ${nome}!`)
+
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "2000");
+
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            return false;
         }
+    }
+
+    function listar() {
+        fetch("/empresas/listar", {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((empresas) => {
+                    empresas.forEach((empresa) => {
+                        listaEmpresas.innerHTML += `<option value='${empresa.idEmpresa}'>${empresa.cnpj}</option>`;
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
     }
 </script>

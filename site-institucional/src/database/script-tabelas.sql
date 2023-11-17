@@ -19,8 +19,8 @@ CREATE TABLE usuario /* 8 colunas */
     tel CHAR(15),
     cpf CHAR(11) NOT NULL,	
     senha VARCHAR(30) NOT NULL,
-    		CONSTRAINT fkEmpresa FOREIGN KEY (fkEmpresa)
-				REFERENCES empresa(idEmpresa)
+    CONSTRAINT fkEmpresa FOREIGN KEY (fkEmpresa)
+	REFERENCES empresa(idEmpresa)
 ) AUTO_INCREMENT = 1000;
  
  CREATE TABLE esteira /* 5 colunas */
@@ -60,10 +60,6 @@ ALTER TABLE empresa
 ALTER TABLE sensor MODIFY COLUMN tipo VARCHAR(7), ADD CONSTRAINT checktipo CHECK (tipo = 'entrada' OR tipo = 'saida');
 ALTER TABLE esteira MODIFY COLUMN condicao VARCHAR(11), ADD CONSTRAINT checkCondicao CHECK (condicao = 'funcionando' OR condicao = 'parado');
 
--- INSERTS -----------------------------------------------------
-
-INSERT INTO empresa (nome, cnpj, qtdSensores, responsavel) VALUES
-()
     
 -- SELECTS -----------------------------------------------------
 SELECT * FROM usuario;
