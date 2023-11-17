@@ -149,8 +149,6 @@
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
                     nomeServer: nome,
                     emailServer: email,
                     senhaServer: senha,
@@ -167,7 +165,7 @@
                         alert(`Bem vindo a Action Sensor Lux, Senhor(a) ${nome}!`)
 
                         setTimeout(() => {
-                            window.location = "login.html";
+                            window.location.href = "login.html";
                         }, "2000");
 
                     } else {
