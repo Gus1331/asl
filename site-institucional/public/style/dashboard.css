@@ -172,7 +172,6 @@ body {
   flex-direction: column;
   justify-content: center;
 }
-
 .dashboardTop1 {
   display: flex;
   justify-content: space-evenly;
@@ -182,10 +181,14 @@ body {
 
 .chart01 {
   width: 60%;
+  text-align: center;
 }
 
 .chart02 {
   width: 30%;
+  align-items: center;
+  font-size: 15px;
+  text-align: center;
 }
 
 .chart03 {
@@ -194,6 +197,8 @@ body {
   align-self: center;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .chart04 {
@@ -231,6 +236,13 @@ body {
 
 .dashboardMid3 .chart10 {
   width: 60%;
+  align-items: center;
+}
+.chart10{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .dashboardMid3 table {
@@ -252,6 +264,11 @@ table th,
 table td {
   padding: 3px;
   border: 1px solid #1e1e1e67;
+  
+}
+.dashDescription{
+  display: flex;
+  flex-direction: column;
 }
 
 .config {

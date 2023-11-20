@@ -93,7 +93,7 @@ new Chart(ctx03, {
         },
         plugins: {
             title: {
-                display: true,
+                display: false,
                 text: (ctx) => 'Step ' + ctx.chart.data.datasets[0].stepped + ' Interpolation',
             }
         },
