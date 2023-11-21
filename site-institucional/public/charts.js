@@ -12,6 +12,7 @@ new Chart(ctx01, {
             borderWidth: 1
         },
         {
+            
             label: 'Frascos',
             data: [1342, 2189, 1873, 1335, 1782, 2243],
             borderWidth: 1
@@ -37,8 +38,9 @@ new Chart(ctx02, {
         labels: ['Produzido', 'Perda'],
         datasets: [{
             data: [79, 21],
-            borderWidth: 1
-        }]
+            borderWidth: 1,
+            backgroundColor: ['#32CD32', '#ff0000']
+            }]
     }
 });
 
