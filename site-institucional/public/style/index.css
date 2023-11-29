@@ -1,7 +1,7 @@
 /* BANNER, WAVES */
 
 .banner {
-    background-image: url(../../public/assets/content/banner2.png);
+    background-image: url(../assets/content/banner2.png);
     background-position: center;
     position: relative;
     height: 525px;

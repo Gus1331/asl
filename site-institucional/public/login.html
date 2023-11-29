@@ -24,7 +24,7 @@
 
                     <div class="formulario-login">
                         <label for="senha"> Senha: </label>
-                        <input type="password" id="input_senha" name="Senha" placeholder="*********">
+                        <input type="password" id="input_senha" name="senha" placeholder="*********">
                     </div>
 
                 </div>
@@ -36,7 +36,7 @@
                         </div>
                         <span><a href="recuperacao.html">Esqueceu sua senha?</a></span>
                     </div>
-                    <button class="btn-login" onclick="login()"> ENTRAR </button>
+                    <button class="btn-login" onclick="entrar()"> ENTRAR </button>
                     <span>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></span>
                 </div>
             </div>
@@ -51,17 +51,69 @@
 </html>
 
 <script>
-    function login() {
-        var email = input_email.value;
-        var senha = input_senha.value;
 
-        if (email != "teste@email.com") {
-            alert("Email incorreto!")
-        } else if (senha != "senha123") {
-            alert("Senha incorreta!")
-        } else {
-            alert("Você logou com sucesso!")
-            window.location.assign("producao.html");
+    function entrar() {
+
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert("Login incorreto!")
         }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ESTEIRAS = JSON.stringify(json.esteira)
+
+                    setTimeout(function () {
+                        window.location.href = "producao.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
+    function sumirMensagem() {
+        //
+    }
+
 </script>
