@@ -51,19 +51,6 @@
 </html>
 
 <script>
-    // function login() {
-    //     var email = input_email.value;
-    //     var senha = input_senha.value;
-
-    //     if (email != "teste@email.com") {
-    //         alert("Email incorreto!")
-    //     } else if (senha != "senha123") {
-    //         alert("Senha incorreta!")
-    //     } else {
-    //         alert("Você logou com sucesso!")
-    //         window.location.assign("producao.html");
-    //     }
-    // }
 
     function entrar() {
 
@@ -115,7 +102,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 

@@ -7,8 +7,4 @@ router.get("/:empresaId", function (req, res) {
   esteiraController.buscarEsteirasPorEmpresa(req, res);
 });
 
-// router.post("/cadastrar", function (req, res) {
-//   aquarioController.cadastrar(req, res);
-// })
-
 module.exports = router;
