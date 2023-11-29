@@ -19,10 +19,9 @@
 
                 <div class="topSidebar">
                     <div class="icon">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
                     </div>
-                    <h2>User123</h2>
+                    <h2 id="b_usuario">User123</h2>
                     <div class="userOptions">
                         <img src="assets/content/useroptions-icon.png">
                     </div>
@@ -108,13 +107,13 @@
                 <div class="dashboard">
                     <div class="chart1">
                         <div>
-                           
+
                             <canvas id="canvas_chart04"></canvas>
                         </div>
                     </div>
                     <div class="chart2">
                         <div>
-                           
+
                             <canvas id="canvas_chart05"></canvas>
                         </div>
                     </div>
@@ -242,8 +241,10 @@
 
 
     </main>
-    
+
     <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
         const ctx05 = document.getElementById('canvas_chart05');
 
         new Chart(ctx05, {
