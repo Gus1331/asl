@@ -17,10 +17,9 @@
 
                 <div class="topSidebar">
                     <div class="icon">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
                     </div>
-                    <h2>User123</h2>
+                    <h2 id="b_usuario">User123</h2>
                     <div class="userOptions">
                         <img src="assets/content/useroptions-icon.png">
                     </div>
@@ -168,7 +167,7 @@
                                 <td>Dezembro</td>
                                 <td>990 000 R$</td>
                             </tr>
-                            
+
                         </table>
                     </div>
                 </div>
@@ -184,16 +183,18 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    b_usuario.innerHTML = sessionStorage.nome
+
     const ctx07 = document.getElementById('canvas_chart07');
 
     new Chart(ctx07, {
         type: 'bar',
         data: {
-            labels: ['Semana 1','Semana 2','Semana 3','Semana 4'],
+            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
             datasets: [{
                 label: 'Renda',
                 data: [20000000, 25000000, 19000000, 20000000, 17000000, 19000000, 25000000, 29000000, 27000000, 28000000, 25000000, 29000000],
-                borderWidth: 1, 
+                borderWidth: 1,
                 backgroundColor: '#0593A2',
             }]
         },
@@ -210,11 +211,11 @@
     new Chart(ctx08, {
         type: 'bar',
         data: {
-            labels: ['Semana 1','Semana 2','Semana 3','Semana 4'],
+            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
             datasets: [{
                 label: 'Renda',
                 data: [20000000, 25000000, 19000000, 20000000, 17000000, 19000000, 25000000, 29000000, 27000000, 28000000, 25000000, 29000000],
-                borderWidth: 1, 
+                borderWidth: 1,
                 backgroundColor: '#4177A6',
             }]
         },
@@ -231,7 +232,7 @@
     new Chart(ctx09, {
         type: 'bar',
         data: {
-            labels: ['Semana 1','Semana 2','Semana 3','Semana 4'],
+            labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
             datasets: [{
                 label: 'Renda',
                 data: [20000000, 25000000, 19000000, 20000000, 17000000, 19000000, 25000000, 29000000, 27000000, 28000000, 25000000, 29000000],
@@ -245,8 +246,8 @@
                     beginAtZero: false,
                     min: 10000,
                     ticks: {
-                            stepSize: 500
-                        }
+                        stepSize: 500
+                    }
                 }
             }
         }
@@ -257,16 +258,16 @@
     new Chart(ctx10, {
         type: 'line',
         data: {
-            labels: ['10/10','11/10','12/10','13/10','14/10','15/10','16/10'],
+            labels: ['10/10', '11/10', '12/10', '13/10', '14/10', '15/10', '16/10'],
             datasets: [{
                 label: 'Garrafas',
                 data: [100000, 120000, 110000, 150000, 145000, 120000, 180000],
                 borderWidth: 1
-            },{
+            }, {
                 label: 'Frascos',
                 data: [200000, 110000, 19000, 190000, 215000, 230000, 160000],
                 borderWidth: 1
-            },{
+            }, {
                 label: 'Copos',
                 data: [14000, 10000, 9500, 8000, 25000, 39000, 46000],
                 borderWidth: 1

@@ -17,10 +17,9 @@
 
                 <div class="topSidebar">
                     <div class="icon">
-                        <img
-                            src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
                     </div>
-                    <h2>User123</h2>
+                    <h2 id="b_usuario">User123</h2>
                     <div class="userOptions">
                         <img src="assets/content/useroptions-icon.png">
                     </div>
@@ -71,14 +70,14 @@
                         <div class="listLines">
                             <div class="line"></div>
                             <div class="line"></div>
-                        <a href="configuracoes.html" rel="next">
+                            <a href="configuracoes.html" rel="next">
+                        </div>
+                        <li>
+                            Configurações
+                            <div class="icon">
+                                <img src="assets/content/config-icon.png">
                             </div>
-                            <li>
-                                Configurações
-                                <div class="icon">
-                                    <img src="assets/content/config-icon.png">
-                                </div>
-                            </li>
+                        </li>
                         </a>
                     </ul>
                 </div>
@@ -121,3 +120,6 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="charts.js"></script>
+<script>
+    b_usuario.innerHTML = sessionStorage.nome
+</script>
