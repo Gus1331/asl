@@ -37,7 +37,7 @@ new Chart(ctx02, {
     data: {
         labels: ['Produzido', 'Perda'],
         datasets: [{
-            data: [79, 21],
+            data: [12456, 2130],
             borderWidth: 1,
             backgroundColor: ['#32CD32', '#ff0000']
             }]
