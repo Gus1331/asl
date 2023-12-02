@@ -8,7 +8,20 @@ function buscarEsteirasPorEmpresa(empresaId) {
   return database.executar(instrucaoSql);
 }
 
+function buscarUltimasMedidas() {
+  var instrucaoSql = ` 
+  SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin, s.tipo ,COUNT(r.dataRegistro) registro
+  FROM esteira AS e JOIN sensor AS s ON fkEsteira = idEsteira
+  JOIN registro AS r ON fkSensor = idSensor
+  WHERE dataRegistro >= NOW() - INTERVAL 1 MINUTE AND s.tipo = 'Saida'
+  GROUP BY e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin;`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   buscarEsteirasPorEmpresa,
+  buscarUltimasMedidas,
 }

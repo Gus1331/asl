@@ -60,6 +60,19 @@ ALTER TABLE empresa
 ALTER TABLE sensor MODIFY COLUMN tipo VARCHAR(7), ADD CONSTRAINT checktipo CHECK (tipo = 'entrada' OR tipo = 'saida');
 ALTER TABLE esteira MODIFY COLUMN condicao VARCHAR(11), ADD CONSTRAINT checkCondicao CHECK (condicao = 'funcionando' OR condicao = 'parado');
 
+-- INSERTS -----------------------------------------------------
+
+INSERT INTO empresa (nome, cnpj, qtdSensores) VALUES
+('Action Sensor Lux', '11111111111111', '100');
+
+INSERT INTO esteira(fkEmpresa, identificacao, produto, condicao, producaoEstimadaPorMin) VALUES
+(100, 'Esteira A', 'copo', 'funcionando', 25);
+
+INSERT INTO sensor(tipo, fkEsteira) VALUES
+('saida', 10000);
+
+INSERT INTO registro(fkSensor) VALUES
+(5001);
     
 -- SELECTS -----------------------------------------------------
 SELECT * FROM usuario;
@@ -87,3 +100,10 @@ SELECT esteira.identificacao AS 'Esteira',
     registro.dataRegistro AS 'Data do registro'
     FROM esteira JOIN sensor ON idEsteira = fkEsteira 
     JOIN registro ON idSensor = fkSensor;
+    
+-- Esteira com seus dados de produção
+ SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin, s.tipo ,COUNT(r.dataRegistro) registro
+ FROM esteira AS e JOIN sensor AS s ON fkEsteira = idEsteira
+ JOIN registro AS r ON fkSensor = idSensor
+ WHERE dataRegistro >= NOW() - INTERVAL 1 MINUTE AND s.tipo = 'Saida'
+GROUP BY e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin;

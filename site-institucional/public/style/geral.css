@@ -230,13 +230,11 @@ main .whiteBoard .container {
 .container table th, .container table td{
     padding: 5px;
     border: 1px solid rgb(153, 153, 153);
+    text-align: center;
 }
 .container table th{
     border: 1px solid rgb(44, 44, 44);
     background-color: #777777;
-}
-.container table .center{
-    text-align: center;
 }
 .container table .red{
     color: red;

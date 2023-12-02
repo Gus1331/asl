@@ -12,7 +12,7 @@
 
 </head>
 
-<body>
+<body onload="obterDadosGrafico()">
     <div class="containerFull">
         <main>
             <div class="sidebar">
@@ -151,87 +151,77 @@
                 <!-- TABELA -->
 
                 <div class="container">
-                    <table>
+                    <table id="table_search">
                         <tr>
                             <th>Identificação</th>
                             <th>Produto</th>
                             <th>Status</th>
-                            <th>Tempo</th>
                             <th>Prod. Estimada</th>
                             <th>Prod. Real</th>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Esteira A</td>
                             <td>Garrafa CB-4</td>
                             <td>Funcionando</td>
-                            <td class="center">18:19:00</td>
-                            <td class="center">25/min</td>
-                            <td class="center green">26/min</td>
+                            <td>25/min</td>
+                            <td class="green">26/min</td>
                         </tr>
                         <tr>
                             <td>Esteira B</td>
                             <td>Frasco 986</td>
                             <td>Parado</td>
-                            <td class="center">00:54:00</td>
-                            <td class="center">22/min</td>
-                            <td class="center red">0/min</td>
+                            <td>22/min</td>
+                            <td class="red">0/min</td>
                         </tr>
                         <tr>
                             <td>Esteira C</td>
                             <td>Frasco 234</td>
                             <td>Funcionando</td>
-                            <td class="center">12:51:05</td>
-                            <td class="center">25/min</td>
-                            <td class="center red">16/min</td>
+                            <td>25/min</td>
+                            <td class="red">16/min</td>
                         </tr>
                         </tr>
                         <tr>
                             <td>Esteira D</td>
                             <td>Garrafa HJ-4</td>
                             <td>Funcionando</td>
-                            <td class="center">98:39:00</td>
-                            <td class="center">26/min</td>
-                            <td class="center green">24/min</td>
+                            <td>26/min</td>
+                            <td class="green">24/min</td>
                         </tr>
                         </tr>
                         <tr>
                             <td>Esteira E</td>
                             <td>Garrafa CB-8</td>
                             <td>Parado</td>
-                            <td class="center">18:29:00</td>
-                            <td class="center">25/min</td>
-                            <td class="center red">0/min</td>
+                            <td>25/min</td>
+                            <td class="red">0/min</td>
                         </tr>
                         </tr>
                         <tr>
                             <td>Esteira F</td>
                             <td>Copo Especial 3</td>
                             <td>Funcionando</td>
-                            <td class="center">18:19:00</td>
-                            <td class="center">25/min</td>
-                            <td class="center green">25/min</td>
+                            <td>25/min</td>
+                            <td class="green">25/min</td>
                         </tr>
                         <td>Esteira G</td>
                         <td>Copo Especial 3</td>
                         <td>Funcionando</td>
-                        <td class="center">65:29:00</td>
-                        <td class="center">35/min</td>
-                        <td class="center green">34/min</td>
+                        <td>35/min</td>
+                        <td class="green">34/min</td>
                         </tr>
                         <td>Esteira H</td>
                         <td>Frasco 986</td>
                         <td>Funcionando</td>
-                        <td class="center">72:44:00</td>
-                        <td class="center">20/min</td>
-                        <td class="center green">25/min</td>
+                        <td>20/min</td>
+                        <td class="green">25/min</td>
                         </tr>
                         <td>Esteira I</td>
                         <td>Garrafa CB-4</td>
                         <td>Parado</td>
-                        <td class="center">28:59:00</td>
-                        <td class="center">25/min</td>
-                        <td class="center red">0/min</td>
-                        </tr>
+                        <td>25/min</td>
+                        <td class="red">0/min</td>
+                        </tr> -->
                     </table>
                 </div>
 
@@ -299,6 +289,43 @@
                 }
             }
         });
+
+        function obterDadosGrafico() {
+
+            fetch(`/esteira/ultimas`, { cache: 'no-store' }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        resposta.reverse();
+
+                        plotarGrafico(resposta);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+        }
+
+        function plotarGrafico(resposta) {
+
+            for (i = 0; i < resposta.length; i++) {
+                var registro = resposta[i];
+
+                table_search.innerHTML =
+                    `<tr>
+                        <td>${registro.identificacao}</td>
+                        <td>${registro.produto}</td>
+                        <td>${registro.condicao}</td>
+                        <td>${registro.producaoPorMin}</td>
+                        <td>${registro.registro}</td>
+                    </tr>`
+            }
+        }
+
+    </script>
     </script>
 
     </div>
