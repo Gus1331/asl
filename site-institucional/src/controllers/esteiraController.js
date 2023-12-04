@@ -18,8 +18,11 @@ function buscarEsteirasPorEmpresa(req, res) {
 
 
 function buscarUltimasMedidas(req, res) {
+
+  var idEmpresa = req.params.empresa;
+
   esteiraModel
-    .buscarUltimasMedidas()
+    .buscarUltimasMedidas(idEmpresa)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);

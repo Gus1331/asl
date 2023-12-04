@@ -3,9 +3,9 @@ var router = express.Router();
 
 var esteiraController = require("../controllers/esteiraController");
 
-router.get("/:empresaId", function (req, res) {
-  esteiraController.buscarEsteirasPorEmpresa(req, res);
-});
+// router.get("/:empresaId", function (req, res) {
+//   esteiraController.buscarEsteirasPorEmpresa(req, res);
+// });
 
 router.get("/ultimas", function (req, res) {
   esteiraController.buscarUltimasMedidas(req, res);

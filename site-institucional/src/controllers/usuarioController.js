@@ -24,11 +24,12 @@ function autenticar(req, res) {
             .then((resultadoEsteira) => {
               if (resultadoEsteira.length > 0) {
                 res.json({
-                  id: resultadoAutenticar[0].id,
+                  idUsuario: resultadoAutenticar[0].idUsuario,
                   email: resultadoAutenticar[0].email,
                   nome: resultadoAutenticar[0].nome,
                   senha: resultadoAutenticar[0].senha,
                   cpf: resultadoAutenticar[0].cpf,
+                  empresa: resultadoAutenticar[0].empresaId,
                   esteira: resultadoEsteira,
                 });
               } else {
