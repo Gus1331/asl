@@ -13,7 +13,7 @@ function buscarUltimasMedidas(idEmpresa) {
   SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin,COUNT(r.dataRegistro) registro
   FROM esteira AS e JOIN sensor AS s ON fkEsteira = idEsteira
   JOIN registro AS r ON fkSensor = idSensor
-  WHERE dataRegistro >= NOW() - INTERVAL 30 MINUTE AND fkEmpresa = ${idEmpresa}
+  WHERE dataRegistro >= NOW() - INTERVAL 1 DAY AND fkEmpresa = ${idEmpresa}
   GROUP BY e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
