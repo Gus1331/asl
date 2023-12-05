@@ -30,7 +30,7 @@ const serial = async (
                 // altere!
                 // CREDENCIAIS DO BANCO - MYSQL WORKBENCH
                 host: '10.18.35.248',
-                user: 'felipe',
+                user: 'root',
                 password: '123123',
                 database: 'asl',
             }

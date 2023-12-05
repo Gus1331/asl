@@ -2,6 +2,10 @@
 CREATE DATABASE asl;
 USE asl;
 
+-- USUARIOS -----------------------------------------------------------
+
+CREATE USER 'Gus'@'10.18.35.248'
+
  -- TABELAS -----------------------------------------------------------
  CREATE TABLE empresa /* 4 colunas */
 	(idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -122,4 +126,4 @@ WHERE esteira.produto = 'copo') AS copo,
 (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
 JOIN esteira ON fkEsteira = idEsteira
 WHERE esteira.produto = 'Frasco') AS frascos,
-(SELECT DATE_FORMAT(NOW(), "%D, %M")) AS dia;
+(SELECT DATE_FORMAT(NOW(), "%d/%m")) AS dia;

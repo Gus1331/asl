@@ -126,54 +126,95 @@
 
     function obterDados() {
 
-    fetch(`medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
-            plotarGrafico(resposta);
+                    plotarGrafico(resposta);
 
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
     }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
 
-// Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-// Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-// A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGrafico(resposta) {
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico(resposta) {
 
-console.log('iniciando plotagem do gráfico...', resposta);
+        console.log('iniciando plotagem do gráfico...', resposta);
 
-// Criando estrutura para plotar gráfico - dados
-let dados = {
-    labels: ['Produto Tratado','Perda'],
-    datasets: [{
-            data: [],
-            borderWidth: 1,
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: ['Produto Tratado', 'Perda'],
+            datasets: [{
+                data: [],
+                borderWidth: 1,
             }]
-};
+        };
 
-    var registro = resposta[0];
-    dados.datasets[0].data.push(registro.saida);
-    dados.datasets[0].data.push((registro.entrada) - (registro.saida));
+        var registro = resposta[0];
+        dados.datasets[0].data.push(registro.saida);
+        dados.datasets[0].data.push((registro.entrada) - (registro.saida));
 
-// Criando estrutura para plotar gráfico - config
-const config = {
-    type: 'pie',
-    data: dados,
-};
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'pie',
+            data: dados,
+        };
 
-// Adicionando gráfico criado em div na tela
-let myChart = new Chart(
-    document.getElementById(`canvas_chart02`),
-    config
-);
-}
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`canvas_chart02`),
+            config
+        );
+        setTimeout(() => atualizarGrafico(dados, myChart), 10000);
+    }
+
+    function atualizarGrafico(dados, myChart) {
+
+
+
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    let avisoCaptura = document.getElementById(`canvas_chart02`)
+                    avisoCaptura.innerHTML = ""
+
+                        var registro = resposta[0];
+
+                        dados.datasets[0].data.shift();
+                        dados.datasets[0].data.shift();
+
+                        dados.datasets[0].data.push(registro.saida);
+                        dados.datasets[0].data.push((registro.entrada) - (registro.saida));
+
+                        myChart.update();
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 10000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 10000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
 </script>
