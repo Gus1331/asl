@@ -15,6 +15,6 @@ void loop() {
     } 
   } else {
     reg = 0;
-  }
+  }   
   delay(800);
 }

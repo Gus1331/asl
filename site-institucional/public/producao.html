@@ -92,6 +92,9 @@
 
             </div>
             <div class="dashboard">
+                <div id="div_alerta" class="Card_alerta">
+
+                </div>
 
                 <!-- CHARTS ------------------------------------------------------------------------ -->
                 <div class="dashboardTop1">
@@ -132,7 +135,7 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta);
+                    plotarGrafico(resposta), plotarAlertaRelatorioSemanal(resposta);
 
                 });
             } else {
@@ -142,6 +145,32 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
+    }
+
+    function plotarAlertaRelatorioSemanal(resposta) {
+        console.log('iniciando plotagem do alerta...', resposta);
+
+        let saida = [];
+        let entrada = [];
+
+        var registro = resposta[0]
+
+
+
+        saida.push(registro.saida);
+        entrada.push(registro.entrada);
+
+        console.log((Number(saida[0]) / Number(entrada[0]))*100);
+
+        if((Number(saida[0]) / Number(entrada[0]))*100 >= 75) {
+            div_alerta.style.backgroundColor = "green"
+            div_alerta.style.display = "block"
+        }else{
+            div_alerta.style.backgroundColor = "red"
+            div_alerta.style.display = "block"
+        }
+
+        setTimeout(() => plotarAlertaRelatorioSemanal(resposta), 10000);
     }
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
@@ -175,12 +204,10 @@
             document.getElementById(`canvas_chart02`),
             config
         );
-        setTimeout(() => atualizarGrafico(dados, myChart), 10000);
+        setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
     }
 
-    function atualizarGrafico(dados, myChart) {
-
-
+    function atualizarGrafico(dados, myChart, resposta) {
 
         fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -204,12 +231,12 @@
                         myChart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 10000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 10000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
             }
         })
             .catch(function (error) {

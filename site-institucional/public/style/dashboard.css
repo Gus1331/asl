@@ -29,6 +29,17 @@ body {
   height: 100vh;
 }
 
+.Card_alerta {
+  position: fixed;
+  border-radius: 4px;
+  padding: 10px;
+  height: 100px;
+  width: 250px;
+  bottom: 90%;
+  right: 10px;
+  display: none;
+}
+
 .containerFull {
   width: 100vw;
   height: 100vh;
