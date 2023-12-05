@@ -165,7 +165,7 @@
         dados.datasets[0].data.push(registro.saida);
         dados.datasets[0].data.push((registro.entrada) - (registro.saida));
 
-        porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida))/(registro.entrada)*100)}%`
+        porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida)) / (registro.entrada) * 100)}%`
 
         // Criando estrutura para plotar gráfico - config
         const config = {
@@ -196,17 +196,17 @@
                     let avisoCaptura = document.getElementById(`canvas_chart02`)
                     avisoCaptura.innerHTML = ""
 
-                        var registro = resposta[0];
+                    var registro = resposta[0];
 
-                        dados.datasets[0].data.shift();
-                        dados.datasets[0].data.shift();
+                    dados.datasets[0].data.shift();
+                    dados.datasets[0].data.shift();
 
-                        dados.datasets[0].data.push(registro.saida);
-                        dados.datasets[0].data.push((registro.entrada) - (registro.saida));
+                    dados.datasets[0].data.push(registro.saida);
+                    dados.datasets[0].data.push((registro.entrada) - (registro.saida));
 
-                        porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida))/(registro.entrada)*100)}%`
+                    porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida)) / (registro.entrada) * 100)}%`
 
-                        myChart.update();
+                    myChart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                     proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 10000);
