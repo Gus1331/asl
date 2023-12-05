@@ -7,7 +7,7 @@ var esteiraController = require("../controllers/esteiraController");
 //   esteiraController.buscarEsteirasPorEmpresa(req, res);
 // });
 
-router.get("/ultimas", function (req, res) {
+router.get("/ultimas/:idEmpresa", function (req, res) {
   esteiraController.buscarUltimasMedidas(req, res);
 });
 

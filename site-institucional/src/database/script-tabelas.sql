@@ -72,8 +72,8 @@ INSERT INTO sensor(tipo, fkEsteira) VALUES
 ('saida', 10000);
 
 INSERT INTO registro(fkSensor) VALUES
-(5001);
-    
+(5000);
+ 
 -- SELECTS -----------------------------------------------------
 SELECT * FROM usuario;
 SELECT * FROM sensor;
@@ -102,8 +102,12 @@ SELECT esteira.identificacao AS 'Esteira',
     JOIN registro ON idSensor = fkSensor;
     
 -- Esteira com seus dados de produção
- SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin, s.tipo ,COUNT(r.dataRegistro) registro
+ SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin,COUNT(r.dataRegistro)  registro
  FROM esteira AS e JOIN sensor AS s ON fkEsteira = idEsteira
  JOIN registro AS r ON fkSensor = idSensor
- WHERE dataRegistro >= NOW() - INTERVAL 1 MINUTE AND s.tipo = 'Saida'
+ WHERE dataRegistro >= NOW() - INTERVAL 1 MINUTE AND fkEmpresa = 100
 GROUP BY e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin;
+
+SELECT COUNT(*) from registro;
+
+SELECT * FROM registro ORDER BY idRegistro DESC LIMIT 1;

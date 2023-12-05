@@ -158,71 +158,8 @@
                             <th>Produto</th>
                             <th>Status</th>
                             <th>Prod. Estimada</th>
-                            <th>Prod. Real</th>
+                            <th>Prod. Minuto</th>
                         </tr>
-                        <!-- <tr>
-                            <td>Esteira A</td>
-                            <td>Garrafa CB-4</td>
-                            <td>Funcionando</td>
-                            <td>25/min</td>
-                            <td class="green">26/min</td>
-                        </tr>
-                        <tr>
-                            <td>Esteira B</td>
-                            <td>Frasco 986</td>
-                            <td>Parado</td>
-                            <td>22/min</td>
-                            <td class="red">0/min</td>
-                        </tr>
-                        <tr>
-                            <td>Esteira C</td>
-                            <td>Frasco 234</td>
-                            <td>Funcionando</td>
-                            <td>25/min</td>
-                            <td class="red">16/min</td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>Esteira D</td>
-                            <td>Garrafa HJ-4</td>
-                            <td>Funcionando</td>
-                            <td>26/min</td>
-                            <td class="green">24/min</td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>Esteira E</td>
-                            <td>Garrafa CB-8</td>
-                            <td>Parado</td>
-                            <td>25/min</td>
-                            <td class="red">0/min</td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>Esteira F</td>
-                            <td>Copo Especial 3</td>
-                            <td>Funcionando</td>
-                            <td>25/min</td>
-                            <td class="green">25/min</td>
-                        </tr>
-                        <td>Esteira G</td>
-                        <td>Copo Especial 3</td>
-                        <td>Funcionando</td>
-                        <td>35/min</td>
-                        <td class="green">34/min</td>
-                        </tr>
-                        <td>Esteira H</td>
-                        <td>Frasco 986</td>
-                        <td>Funcionando</td>
-                        <td>20/min</td>
-                        <td class="green">25/min</td>
-                        </tr>
-                        <td>Esteira I</td>
-                        <td>Garrafa CB-4</td>
-                        <td>Parado</td>
-                        <td>25/min</td>
-                        <td class="red">0/min</td>
-                        </tr> -->
                     </table>
                 </div>
 
@@ -230,98 +167,107 @@
     </div>
     </main>
 </body>
+
 </html>
 <script>
-        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        const ctx05 = document.getElementById('canvas_chart05');
+    const ctx05 = document.getElementById('canvas_chart05');
 
-        new Chart(ctx05, {
-            type: 'bar',
-            data: {
-                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
-                datasets: [{
-                    label: 'Produção',
-                    data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
-                    borderWidth: 1,
-                    backgroundColor: '#FF7A48',
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        min: 50000,
-                        max: 300000,
-                        ticks: {
-                            stepSize: 5000
-                        }
-
+    new Chart(ctx05, {
+        type: 'bar',
+        data: {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+            datasets: [{
+                label: 'Produção',
+                data: [200000, 250000, 190000, 200000, 170000, 190000, 250000, 290000, 270000, 280000, 250000, 290000],
+                borderWidth: 1,
+                backgroundColor: '#FF7A48',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 50000,
+                    max: 300000,
+                    ticks: {
+                        stepSize: 5000
                     }
+
                 }
             }
-        });
-        const ctx04 = document.getElementById('canvas_chart04');
-
-        new Chart(ctx04, {
-            type: 'bar',
-            data: {
-                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
-                datasets: [{
-                    label: 'Lucro Anual',
-                    data: [2200000, 2500000, 1900000, 2000000, 1700000, 1900000, 2500000, 2900000, 2700000, 2800000, 2500000, 2900000],
-                    borderWidth: 1,
-                    backgroundColor: '#103778',
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        min: 500000,
-                        max: 3000000,
-                        ticks: {
-                            stepSize: 50000
-                        }
-
-                    }
-                }
-            }
-        });
-
-        function obterDadosGrafico() {
-
-            fetch(`/esteira/ultimas`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        resposta.reverse();
-
-                        plotarGrafico(resposta);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
         }
+    });
+    const ctx04 = document.getElementById('canvas_chart04');
 
-        function plotarGrafico(resposta) {
+    new Chart(ctx04, {
+        type: 'bar',
+        data: {
+            labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+            datasets: [{
+                label: 'Lucro Anual',
+                data: [2200000, 2500000, 1900000, 2000000, 1700000, 1900000, 2500000, 2900000, 2700000, 2800000, 2500000, 2900000],
+                borderWidth: 1,
+                backgroundColor: '#103778',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 500000,
+                    max: 3000000,
+                    ticks: {
+                        stepSize: 50000
+                    }
 
-            for (i = 0; i < resposta.length; i++) {
-                var registro = resposta[i];
+                }
+            }
+        }
+    });
 
-                table_search.innerHTML =
-                    `<tr>
+    function obterDadosGrafico() {
+
+        var idEmpresa = sessionStorage.EMPRESA
+
+        fetch(`/esteira/ultimas/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta) {
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+
+            if (registro.registro < registro.producaoPorMin) {
+                var registroMin = `class = "red"> ${registro.registro}`
+            } else {
+                var registroMin = `class = "green"> ${registro.registro}`
+            }
+
+            table_search.innerHTML +=
+                `<tr>
                         <td>${registro.identificacao}</td>
                         <td>${registro.produto}</td>
                         <td>${registro.condicao}</td>
                         <td>${registro.producaoPorMin}</td>
-                        <td>${registro.registro}</td>
+                        <td ${registroMin}/min</td>
                     </tr>`
-            }
         }
+    }
 
-    </script>
+</script>
