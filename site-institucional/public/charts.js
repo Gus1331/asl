@@ -1,5 +1,4 @@
 const ctx01 = document.getElementById('canvas_chart01');
-const ctx02 = document.getElementById('canvas_chart02');
 const ctx03 = document.getElementById('canvas_chart03');
 
 new Chart(ctx01, {
@@ -29,18 +28,6 @@ new Chart(ctx01, {
                 beginAtZero: false
             }
         }
-    }
-});
-
-new Chart(ctx02, {
-    type: 'pie',
-    data: {
-        labels: ['Produzido', 'Perda'],
-        datasets: [{
-            data: [12456, 2130],
-            borderWidth: 1,
-            backgroundColor: ['#32CD32', '#ff0000']
-            }]
     }
 });
 

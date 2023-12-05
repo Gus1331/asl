@@ -66,14 +66,14 @@ INSERT INTO empresa (nome, cnpj, qtdSensores) VALUES
 ('Action Sensor Lux', '11111111111111', '100');
 
 INSERT INTO esteira(fkEmpresa, identificacao, produto, condicao, producaoEstimadaPorMin) VALUES
-(100, 'Esteira A', 'copo', 'funcionando', 25);
+(100, 'Esteira B', 'Garrafa', 'Parado', 19);
 
 INSERT INTO sensor(tipo, fkEsteira) VALUES
-('saida', 10000);
+('entrada', 10001);
 
 INSERT INTO registro(fkSensor) VALUES
-(5000);
- 
+(5001);
+    
 -- SELECTS -----------------------------------------------------
 SELECT * FROM usuario;
 SELECT * FROM sensor;
@@ -102,12 +102,24 @@ SELECT esteira.identificacao AS 'Esteira',
     JOIN registro ON idSensor = fkSensor;
     
 -- Esteira com seus dados de produção
- SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin,COUNT(r.dataRegistro)  registro
+ SELECT e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin AS producaoPorMin ,COUNT(r.dataRegistro) registro
  FROM esteira AS e JOIN sensor AS s ON fkEsteira = idEsteira
  JOIN registro AS r ON fkSensor = idSensor
- WHERE dataRegistro >= NOW() - INTERVAL 1 MINUTE AND fkEmpresa = 100
+ WHERE dataRegistro >= NOW() - INTERVAL 30 MINUTE AND fkEmpresa = 100
 GROUP BY e.identificacao, e.produto, e.condicao, e.producaoEstimadaPorMin;
 
-SELECT COUNT(*) from registro;
+SELECT (SELECT COUNT(*) FROM registro JOIN sensor ON 
+fkSensor = idSensor WHERE sensor.tipo = 'Saida') AS SAIDA,
+(SELECT COUNT(*) FROM registro JOIN sensor ON
+fkSensor = idSensor WHERE sensor.tipo = 'Entrada') AS ENTRADA;
 
-SELECT * FROM registro ORDER BY idRegistro DESC LIMIT 1;
+SELECT (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
+JOIN esteira ON fkEsteira = idEsteira
+WHERE esteira.produto = 'Garrafa') AS garrafa,
+(SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
+JOIN esteira ON fkEsteira = idEsteira
+WHERE esteira.produto = 'copo') AS copo,
+(SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
+JOIN esteira ON fkEsteira = idEsteira
+WHERE esteira.produto = 'Frasco') AS frascos,
+(SELECT DATE_FORMAT(NOW(), "%D, %M")) AS dia;
