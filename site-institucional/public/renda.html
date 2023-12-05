@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), obterDadosDiario()">
     <div class="containerFull">
         <main>
             <div class="sidebar">
@@ -253,32 +253,105 @@
         }
     });
 
-    const ctx10 = document.getElementById('canvas_chart10');
+    // GRAFICO DO DIA
+    function obterDadosDiario() {
 
-    new Chart(ctx10, {
-        type: 'line',
-        data: {
-            labels: ['10/10', '11/10', '12/10', '13/10', '14/10', '15/10', '16/10'],
-            datasets: [{
-                label: 'Garrafas',
-                data: [100000, 120000, 110000, 150000, 145000, 120000, 180000],
-                borderWidth: 1
-            }, {
-                label: 'Frascos',
-                data: [200000, 110000, 19000, 190000, 215000, 230000, 160000],
-                borderWidth: 1
-            }, {
-                label: 'Copos',
-                data: [14000, 10000, 9500, 8000, 25000, 39000, 46000],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false,
-                }
+        fetch(`/medidas/diario`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-        }
-    });
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico(resposta) {
+
+        console.log('iniciando plotagem do gráfico...', resposta);
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: ['Garrafa', 'Copo', 'Frasco'],
+            datasets: [{
+                label:[],
+                data: [],
+                borderWidth: 1,
+            }]
+        };
+
+        var registro = resposta[0];
+
+        dados.datasets[0].data.push(registro.garrafa);
+        dados.datasets[0].data.push(registro.copo);
+        dados.datasets[0].data.push(registro.frasco);
+        dados.datasets[0].label.push(registro.dia);
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`canvas_chart10`),
+            config
+        );
+        setTimeout(() => atualizarGrafico(dados, myChart), 30000);
+    }
+
+    function atualizarGrafico(dados, myChart) {
+
+
+
+        fetch(`/medidas/diario`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    let avisoCaptura = document.getElementById(`canvas_chart10`)
+                    avisoCaptura.innerHTML = ""
+
+                    var registro = resposta[0];
+
+                    dados.datasets[0].data.shift();
+                    dados.datasets[0].data.shift();
+                    dados.datasets[0].data.shift();
+                    dados.datasets[0].label.shift();
+
+                    dados.datasets[0].data.push(registro.garrafa);
+                    dados.datasets[0].data.push(registro.copo);
+                    dados.datasets[0].data.push(registro.frasco);
+                    dados.datasets[0].label.push(registro.dia);
+
+                    myChart.update();
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 30000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 30000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 </script>
