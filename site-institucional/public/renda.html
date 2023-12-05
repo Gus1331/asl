@@ -293,8 +293,8 @@
 
         var registro = resposta[0];
 
-        dados.datasets[0].data.push(registro.garrafa);
-        dados.datasets[0].data.push(registro.copo);
+        dados.datasets[0].data.push(registro.garrafa * 5);
+        dados.datasets[0].data.push(registro.copo * 3);
         dados.datasets[0].data.push(registro.frasco);
         dados.datasets[0].label.push(registro.dia);
 
