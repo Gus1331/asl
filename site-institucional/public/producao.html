@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
 </head>
 
-<body onload="obterDados()">
+<body onload="validarSessao(), obterDados()">
     <div class="containerFull">
 
         <main>
@@ -105,9 +105,10 @@
                     <div class="chart02">
                         <h3>Relatório Semanal de Produção</h3>
                         <canvas id="canvas_chart02"></canvas>
+                        <span id="porcentagem">X%</span>
                     </div>
-
                 </div>
+
                 <div class="chart03">
                     <h3>Estado de Funcionamento das Esteiras</h3>
                     <canvas id="canvas_chart03"></canvas>
@@ -193,6 +194,8 @@
         dados.datasets[0].data.push(registro.saida);
         dados.datasets[0].data.push((registro.entrada) - (registro.saida));
 
+        porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida))/(registro.entrada)*100)}%`
+
         // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'pie',
@@ -227,6 +230,8 @@
 
                         dados.datasets[0].data.push(registro.saida);
                         dados.datasets[0].data.push((registro.entrada) - (registro.saida));
+
+                        porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida))/(registro.entrada)*100)}%`
 
                         myChart.update();
 

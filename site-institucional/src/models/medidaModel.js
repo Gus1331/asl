@@ -41,8 +41,27 @@ function buscarMedidasEmTempoReal(idAquario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarDadosDiario() {
+
+    instrucaoSql = ''
+
+    instrucaoSql = `SELECT (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
+    JOIN esteira ON fkEsteira = idEsteira
+    WHERE esteira.produto = 'Garrafa' AND registro.dataRegistro >= NOW() - INTERVAL 1 DAY) AS garrafa,
+    (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
+    JOIN esteira ON fkEsteira = idEsteira
+    WHERE esteira.produto = 'copo' AND registro.dataRegistro >= NOW() - INTERVAL 1 DAY) AS copo,
+    (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor 
+    JOIN esteira ON fkEsteira = idEsteira
+    WHERE esteira.produto = 'Frasco' AND registro.dataRegistro >= NOW() - INTERVAL 1 DAY) AS frasco,
+    (SELECT DATE_FORMAT(NOW(), "%d/%m")) AS dia`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarDadosDiario,
 }

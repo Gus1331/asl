@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="obterDadosGrafico()">
+<body onload="validarSessao(), obterDadosGrafico()">
     <div class="containerFull">
         <main>
             <div class="sidebar">
@@ -158,7 +158,7 @@
                             <th>Produto</th>
                             <th>Status</th>
                             <th>Prod. Estimada</th>
-                            <th>Prod. Minuto</th>
+                            <th>Prod. Dia</th>
                         </tr>
                     </table>
                 </div>
@@ -253,19 +253,13 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
 
-            if (registro.registro < registro.producaoPorMin) {
-                var registroMin = `class = "red"> ${registro.registro}`
-            } else {
-                var registroMin = `class = "green"> ${registro.registro}`
-            }
-
             table_search.innerHTML +=
                 `<tr>
                         <td>${registro.identificacao}</td>
                         <td>${registro.produto}</td>
                         <td>${registro.condicao}</td>
                         <td>${registro.producaoPorMin}</td>
-                        <td ${registroMin}/min</td>
+                        <td>${registro.registro}</td>
                     </tr>`
         }
     }
