@@ -93,7 +93,7 @@
             </div>
             <div class="dashboard">
                 <div id="div_alerta" class="Card_alerta">
-
+                    <span id="span_alerta" class="texto_alerta"></span>
                 </div>
 
                 <!-- CHARTS ------------------------------------------------------------------------ -->
@@ -167,9 +167,11 @@
         if(parseInt(((Number(entrada[0])) - (Number(saida[0]))) / (Number(entrada[0])) * 100) <= 25) {
             div_alerta.style.backgroundColor = "green"
             div_alerta.style.display = "block"
+            span_alerta.innerHTML = "Produção dentro da margem esperada"
         }else{
             div_alerta.style.backgroundColor = "red"
             div_alerta.style.display = "block"
+            span_alerta.innerHTML = "Produção fora da margem esperada"
         }
 
         setTimeout(() => plotarAlertaRelatorioSemanal(resposta), 10000);
