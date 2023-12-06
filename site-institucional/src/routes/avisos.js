@@ -27,4 +27,8 @@ router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });
 
+router.get("/ultimas", function (req, res) {
+    medidaController.buscarUltimasMedidas(req, res);
+});
+
 module.exports = router;

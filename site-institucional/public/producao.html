@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
 </head>
 
-<body onload="validarSessao(), obterDados()">
+<body onload="validarSessao(), obterDados(), VerificarDados()">
     <div class="containerFull">
 
         <main>
@@ -137,6 +137,26 @@
                     resposta.reverse();
 
                     plotarGrafico(resposta)
+                    plotarAlertaRelatorioSemanal(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function VerificarDados() {
+
+        fetch(`/avisos/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
                     plotarAlertaRelatorioSemanal(resposta);
 
                 });
