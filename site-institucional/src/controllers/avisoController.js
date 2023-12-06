@@ -126,7 +126,7 @@ function deletar(req, res) {
         );
 }
 
-function buscarUltimasMedidas(res) {
+function buscarUltimasMedidas(req, res) {
 
     avisoModel.buscarUltimasMedidas().then(function (resultado) {
         if (resultado.length > 0) {
