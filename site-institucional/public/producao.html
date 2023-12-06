@@ -149,34 +149,6 @@
             });
     }
 
-    function plotarAlertaRelatorioSemanal(resposta) {
-        console.log('iniciando plotagem do alerta...', resposta);
-
-        let saida = [];
-        let entrada = [];
-
-        var registro = resposta[0]
-
-
-
-        saida.push(registro.saida);
-        entrada.push(registro.entrada);
-
-        console.log((Number(saida[0]) / Number(entrada[0]))*100);
-
-        if(parseInt(((Number(entrada[0])) - (Number(saida[0]))) / (Number(entrada[0])) * 100) <= 25) {
-            div_alerta.style.backgroundColor = "green"
-            div_alerta.style.display = "block"
-            span_alerta.innerHTML = "Produção dentro da margem esperada"
-        }else{
-            div_alerta.style.backgroundColor = "red"
-            div_alerta.style.display = "block"
-            span_alerta.innerHTML = "Produção fora da margem esperada"
-        }
-
-        setTimeout(() => plotarAlertaRelatorioSemanal(resposta), 10000);
-    }
-
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
@@ -211,6 +183,32 @@
             config
         );
         setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
+    }
+
+    function plotarAlertaRelatorioSemanal(resposta) {
+        console.log('iniciando plotagem do alerta...', resposta);
+
+        let saida = [];
+        let entrada = [];
+
+        var registro = resposta[0]
+
+        saida.push(registro.saida);
+        entrada.push(registro.entrada);
+
+        console.log((Number(saida[0]) / Number(entrada[0])) * 100);
+
+        if (parseInt(((Number(entrada[0])) - (Number(saida[0]))) / (Number(entrada[0])) * 100) <= 25) {
+            div_alerta.style.backgroundColor = "green"
+            div_alerta.style.display = "block"
+            span_alerta.innerHTML = "Produção dentro da margem esperada"
+        } else {
+            div_alerta.style.backgroundColor = "red"
+            div_alerta.style.display = "block"
+            span_alerta.innerHTML = "Produção fora da margem esperada"
+        }
+
+        setTimeout(() => plotarAlertaRelatorioSemanal(resposta), 10000);
     }
 
     function atualizarGrafico(dados, myChart, resposta) {
@@ -251,7 +249,7 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
-            plotarAlertaRelatorioSemanal(resposta);
+        plotarAlertaRelatorioSemanal(resposta);
 
     }
 </script>
