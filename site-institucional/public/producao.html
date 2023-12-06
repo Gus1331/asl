@@ -136,7 +136,8 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta), plotarAlertaRelatorioSemanal(resposta);
+                    plotarGrafico(resposta)
+                    plotarAlertaRelatorioSemanal(resposta);
 
                 });
             } else {
@@ -247,6 +248,8 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
+
+            plotarAlertaRelatorioSemanal(resposta);
 
     }
 </script>
