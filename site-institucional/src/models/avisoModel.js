@@ -89,11 +89,23 @@ function deletar(idAviso) {
     return database.executar(instrucao);
 }
 
+function buscarUltimasMedidas() {
+
+    instrucaoSql = ''
+
+    instrucaoSql = `SELECT (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor WHERE sensor.tipo = 'Saida') AS saida,
+    (SELECT COUNT(*) FROM registro JOIN sensor ON fkSensor = idSensor WHERE sensor.tipo = 'Entrada') AS entrada;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listar,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
     editar,
-    deletar
+    deletar,
+    buscarUltimasMedidas
 }
