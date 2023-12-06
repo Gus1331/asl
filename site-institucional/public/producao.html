@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="js/sessao.js"></script>
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="shortcut icon" href="assets/content/logo.png" type="image/x-icon">
+</head>
+
+<body onload="validarSessao(), obterDados(), VerificarDados()">
+    <div class="containerFull">
+
+        <main>
+            <div class="sidebar">
+
+                <div class="topSidebar">
+                    <div class="icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png">
+                    </div>
+                    <h2 id="b_usuario">User123</h2>
+                    <div class="userOptions">
+                        <img src="assets/content/useroptions-icon.png">
+                    </div>
+                </div>
+
+                <div class="midSidebar">
+                    <div class="listTitle">
+                        <h1>Dashboards</h1>
+                        <div class="icon">
+                            <img src="assets/content/dashbord-icon.png">
+                        </div>
+                    </div>
+                    <ul>
+                        <a href="" rel="prev">
+                            <li class="selected">
+                                Produção
+                                <div class="icon">
+                                    <img src="assets/content/producao-icon.png">
+                                </div>
+                            </li>
+                        </a>
+                        <div class="listLines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <a href="renda.html" rel="prev">
+                            <li>
+                                Renda
+                                <div class="icon">
+                                    <img src="assets/content/renda-icon.png">
+                                </div>
+                            </li>
+                        </a>
+                        <div class="listLines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+
+                        <a href="geral.html" rel="next">
+                            <li>
+                                Geral
+                                <div class="icon">
+                                    <img src="assets/content/geral-icon.png">
+                                </div>
+                            </li>
+                        </a>
+
+                        <div class="listLines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <a href="configuracoes.html" rel="next">
+                        </div>
+                        <li>
+                            Configurações
+                            <div class="icon">
+                                <img src="assets/content/config-icon.png">
+                            </div>
+                        </li>
+                        </a>
+                    </ul>
+                </div>
+
+                <div class="bottomSidebar">
+                    <div class="logo icon">
+                        <img src="assets/content/logo.png">
+                    </div>
+                    <p class="version">Versão 1.00</p>
+                </div>
+
+            </div>
+            <div class="dashboard">
+                <div id="div_alerta" class="Card_alerta">
+                    <span id="span_alerta" class="texto_alerta"></span>
+                </div>
+
+                <!-- CHARTS ------------------------------------------------------------------------ -->
+                <div class="dashboardTop1">
+                    <div class="chart01">
+                        <h3>Cunsulta de Produção Semanal</h3>
+                        <canvas id="canvas_chart01"></canvas>
+                    </div>
+                    <div class="chart02">
+                        <h3>Relatório Semanal de Produção</h3>
+                        <canvas id="canvas_chart02"></canvas>
+                        <span id="porcentagem">X%</span>
+                    </div>
+                </div>
+
+                <div class="chart03">
+                    <h3>Estado de Funcionamento das Esteiras</h3>
+                    <canvas id="canvas_chart03"></canvas>
+                </div>
+                <!-- CHARTS ------------------------------------------------------------------------ -->
+
+            </div>
+        </main>
+        <div class="gradient"></div>
+
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="charts.js"></script>
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    function obterDados() {
+
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta)
+                    
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function VerificarDados() {
+
+        fetch(`/avisos/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarAlertaRelatorioSemanal(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico(resposta) {
+
+        console.log('iniciando plotagem do gráfico...', resposta);
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: ['Produto Tratado', 'Perda'],
+            datasets: [{
+                data: [],
+                borderWidth: 1,
+            }]
+        };
+
+        var registro = resposta[0];
+        dados.datasets[0].data.push(registro.saida);
+        dados.datasets[0].data.push((registro.entrada) - (registro.saida));
+
+        porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida)) / (registro.entrada) * 100)}%`
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'pie',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`canvas_chart02`),
+            config
+        );
+        setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
+    }
+
+    function plotarAlertaRelatorioSemanal(resposta) {
+        console.log('iniciando plotagem do alerta...', resposta);
+
+        let saida = [];
+        let entrada = [];
+
+        var registro = resposta[0]
+
+        saida.push(registro.saida);
+        entrada.push(registro.entrada);
+
+        console.log((Number(saida[0]) / Number(entrada[0])) * 100);
+
+        if (parseInt(((Number(entrada[0])) - (Number(saida[0]))) / (Number(entrada[0])) * 100) <= 25) {
+            div_alerta.style.backgroundColor = "green"
+            div_alerta.style.display = "block"
+            span_alerta.innerHTML = "Produção dentro da margem esperada"
+        } else {
+            div_alerta.style.backgroundColor = "red"
+            div_alerta.style.display = "block"
+            span_alerta.innerHTML = "Produção fora da margem esperada"
+        }
+
+        setTimeout(() => plotarAlertaRelatorioSemanal(resposta), 10000);
+    }
+
+    function atualizarGrafico(dados, myChart, resposta) {
+
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    let avisoCaptura = document.getElementById(`canvas_chart02`)
+                    avisoCaptura.innerHTML = ""
+
+                    var registro = resposta[0];
+
+                    dados.datasets[0].data.shift();
+                    dados.datasets[0].data.shift();
+
+                    dados.datasets[0].data.push(registro.saida);
+                    dados.datasets[0].data.push((registro.entrada) - (registro.saida));
+
+                    porcentagem.innerHTML = `Perda: ${parseInt(((registro.entrada) - (registro.saida)) / (registro.entrada) * 100)}%`
+
+                    myChart.update();
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, resposta), 10000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+        plotarAlertaRelatorioSemanal(resposta);
+
+    }
+</script>
