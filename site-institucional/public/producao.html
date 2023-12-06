@@ -163,7 +163,7 @@
 
         console.log((Number(saida[0]) / Number(entrada[0]))*100);
 
-        if((Number(saida[0]) / Number(entrada[0]))*100 >= 75) {
+        if(parseInt(((Number(entrada[0])) - (Number(saida[0]))) / (Number(entrada[0])) * 100) <= 25) {
             div_alerta.style.backgroundColor = "green"
             div_alerta.style.display = "block"
         }else{
